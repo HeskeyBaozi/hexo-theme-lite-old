@@ -1,6 +1,15 @@
-
-:global {
-  html, body, #root {
+:global(html, body, #root) {
     height: 100%;
-  }
+    font-size: 1.1rem;
 }
+
+@media (max-width: 768px) {
+    :global(html, body, #root) {
+        font-size: 1rem;
+    }
+}
+
+:global(div) {
+    box-sizing: border-box;
+}
+

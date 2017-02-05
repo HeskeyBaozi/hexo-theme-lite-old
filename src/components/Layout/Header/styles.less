@@ -1,0 +1,47 @@
+@import "../../common";
+
+
+.header {
+  position: relative;
+  z-index: 1;
+  background-color: @white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
+  height: @large-header-height;
+  line-height: @large-header-height;
+  padding: 0;
+
+  @media (max-width: 768px) {
+    height: @small-header-height;
+    line-height: @small-header-height;
+    padding: 0 10px;
+  }
+
+  &:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: blur(40px);
+    background: @background-picture;
+  }
+}
+
+.menu {
+  height: 100%;
+  line-height: @large-header-height - 1;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0);
+  border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.bars {
+  font-size: 1.3em;
+}
