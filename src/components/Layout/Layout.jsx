@@ -3,19 +3,24 @@ import {Layout} from 'antd';
 import styles from './styles.less';
 import Header from './Header/Header';
 import Content from './Content/Content';
+import Footer from './Footer/Footer';
 
-function MainLayout() {
+function MainLayout({
+    children
+}) {
     return (
         <Layout className={styles.layout}>
             <Header/>
-            <Content/>
-            <Layout.Footer>
-                footer
-            </Layout.Footer>
+            <Content>
+                {children}
+            </Content>
+            <Footer/>
         </Layout>
     );
 }
 
-MainLayout.propTypes = {};
+MainLayout.propTypes = {
+    children: PropTypes.element.isRequired
+};
 
 export default MainLayout;

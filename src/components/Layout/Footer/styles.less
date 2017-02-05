@@ -1,0 +1,23 @@
+@import "../../common";
+
+.footer {
+  padding: 5px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  background-color: @white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 -1px 2px;
+
+  &:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: blur(30px);
+    background: @background-picture;
+  }
+}

@@ -3,24 +3,30 @@ import {Layout} from 'antd';
 import styles from './styles.less';
 import Avatar from '../../../assets/avatar.jpg';
 
-function Content() {
+function Content({
+    children
+}) {
     return (
         <Layout.Content className={styles.content}>
-            <div className={styles.info}>
-                <div className={styles.author}>
-                    <img src={Avatar} alt="avatar" className={styles.avatar}/>
+            <div className={styles.contentInner}>
+                <div className={styles.info}>
+                    <div className={styles.author}>
+                        <img src={Avatar} alt="avatar" className={styles.avatar}/>
+                    </div>
+                    <div>
+                        Hello, I'm Heskey Baozi :)
+                    </div>
                 </div>
-                <div>
-                    Hello, I'm Heskey Baozi :)
+                <div className={styles.container}>
+                    children: {children}
                 </div>
-            </div>
-            <div className={styles.container}>
-                Hello, World
             </div>
         </Layout.Content>
     );
 }
 
-Content.propTypes = {};
+Content.propTypes = {
+    children: PropTypes.element.isRequired
+};
 
 export default Content;
