@@ -3,9 +3,24 @@
   "outputPath": "./source",
   "disableCSSModules": false,
   "autoprefixer": null,
-  "proxy": null,
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:4000/",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": "/api"
+      }
+    }
+  },
   "extraBabelPlugins": [
-    "transform-runtime"
+    "transform-runtime",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
   ],
   "env": {
     "development": {
