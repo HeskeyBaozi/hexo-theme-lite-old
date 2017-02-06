@@ -1,0 +1,18 @@
+{
+    "categories": {
+        "ciytvz9ja0003cc1sw4g86252": {
+            "name": "Foo",
+            "category_id": "ciytvz9ja0003cc1sw4g86252"
+        },
+        "ciytvz9jq0008cc1sl2m8tvy4": {
+            "name": "Bar",
+            "parent": "ciytvz9ja0003cc1sw4g86252",
+            "category_id": "ciytvz9jq0008cc1sl2m8tvy4"
+        },
+        "ciytvz9jx000ccc1snpxhnbxs": {
+            "name": "Baz",
+            "parent": "ciytvz9jq0008cc1sl2m8tvy4",
+            "category_id": "ciytvz9jx000ccc1snpxhnbxs"
+        }
+    }
+}
