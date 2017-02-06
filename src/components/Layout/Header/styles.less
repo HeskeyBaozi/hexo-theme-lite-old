@@ -1,4 +1,4 @@
-@import "../../common";
+@import "../../../common";
 
 .header {
   position: relative;
@@ -30,9 +30,7 @@
 
 .menu {
   height: 100%;
-  font-size: 0.8em;
-  margin-left: 10px;
-  line-height: @large-header-height - 1;
+  line-height: @large-header-height - 1px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0);
   border-bottom-color: rgba(255, 255, 255, 0);
@@ -41,13 +39,8 @@
 .heading {
   display: flex;
   margin: 0 auto;
+  justify-content: center;
   width: @large-content-width;
-}
-
-.logo {
-  display: inline-block;
-  align-self: center;
-  vertical-align: middle;
 }
 
 .bars {

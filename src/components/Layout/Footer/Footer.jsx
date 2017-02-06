@@ -5,8 +5,7 @@ import {Layout} from 'antd';
 function Footer() {
     return (
         <Layout.Footer className={styles.footer}>
-            <p>© 2017 Heskey Baozi</p>
-            <p>Theme: Lite</p>
+            <p>© 2017 Heskey Baozi, Theme: Lite</p>
         </Layout.Footer>
     );
 }

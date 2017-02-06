@@ -31,7 +31,6 @@ function Header() {
             <Row>
                 <Col xs={0} sm={24} md={24} lg={24}>
                     <div className={styles.heading}>
-                        <img src={Logo} alt="logo" width={44} height={44} className={styles.logo}/>
                         <Menu mode="horizontal" defaultSelectedKeys={['home']} className={styles.menu}>
                             <Menu.Item key="home">
                                 <Icon type="home"/> Home

@@ -1,1 +1,23 @@
-{"tags":{"ciyu6vzbf000gpo1s8aio88ny":{"name":"Foo","tag_id":"ciyu6vzbf000gpo1s8aio88ny"},"ciyu6vzbo000mpo1sqvo3ux2c":{"name":"Bar","tag_id":"ciyu6vzbo000mpo1sqvo3ux2c"},"ciyu6vzbp000opo1s2mv1g9h3":{"name":"Baz","tag_id":"ciyu6vzbp000opo1s2mv1g9h3"}}}
+{
+  "ciyu7ygvm000ihs1sjs9mpdv7": {
+    "name": "Foo",
+    "tag_id": "ciyu7ygvm000ihs1sjs9mpdv7",
+    "posts": [
+      "ciyu7ygvi000fhs1spnit03bp"
+    ]
+  },
+  "ciyu7ygvs000nhs1soa95vyhd": {
+    "name": "Bar",
+    "tag_id": "ciyu7ygvs000nhs1soa95vyhd",
+    "posts": [
+      "ciyu7ygvi000fhs1spnit03bp"
+    ]
+  },
+  "ciyu7ygvt000ohs1s3h5lryur": {
+    "name": "Baz",
+    "tag_id": "ciyu7ygvt000ohs1s3h5lryur",
+    "posts": [
+      "ciyu7ygvi000fhs1spnit03bp"
+    ]
+  }
+}

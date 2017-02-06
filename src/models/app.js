@@ -32,13 +32,5 @@ export default {
             }
         }
     },
-    subscriptions: {
-        initialize: function ({history, dispatch}) {
-            history.listen(location => {
-                if (location.pathname.includes('/')) {
-                    dispatch({type: 'initializeAppMeta'});
-                }
-            });
-        }
-    },
+    subscriptions: {},
 }
