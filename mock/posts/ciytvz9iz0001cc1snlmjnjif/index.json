@@ -1,1 +1,25 @@
-{"title":"Categories","date":"2013-12-24T15:30:09.000Z","updated":"2016-03-07T08:01:32.000Z","comments":true,"excerpt":"","more":"<p>This post contains 3 categories. Make sure your theme can display all of the categories.</p>\n","source":"_posts/categories.md","full_source":"D:\\Project\\hexo-theme-unit-test-master\\source\\_posts\\categories.md","path":"2013/12/24/categories/","permalink":"http://yoursite.com/2013/12/24/categories/","photos":[],"link":"","tags":[null,null,null],"categories":[null,null,null],"post_id":"ciytvz9iz0001cc1snlmjnjif"}
+{
+  "title": "Categories",
+  "date": "2013-12-24T15:30:09.000Z",
+  "updated": "2016-03-07T08:01:32.000Z",
+  "comments": true,
+  "excerpt": "",
+  "more": "<p>This post contains 3 categories. Make sure your theme can display all of the categories.</p>\n",
+  "source": "_posts/categories.md",
+  "full_source": "D:\\Project\\hexo-theme-unit-test-master\\source\\_posts\\categories.md",
+  "path": "2013/12/24/categories/",
+  "permalink": "http://yoursite.com/2013/12/24/categories/",
+  "photos": [],
+  "link": "",
+  "tags": [
+    null,
+    null,
+    null
+  ],
+  "categories": [
+    null,
+    null,
+    null
+  ],
+  "post_id": "ciytvz9iz0001cc1snlmjnjif"
+}

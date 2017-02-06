@@ -1,4 +1,6 @@
-import {fetchGlobalConfig} from '../services/global';
+import {
+    fetchGlobalConfig
+} from '../services/global';
 
 export default {
     namespace: 'app',
