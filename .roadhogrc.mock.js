@@ -5,4 +5,6 @@ export default {
         response.json(require(`./mock/posts/${post_id}/${field_name}.json`));
     },
     'GET /api/posts/index.json': require('./mock/posts/index.json'),
+    'GET /api/categories/entities.json': require('./mock/categories/entities.json'),
+    'GET /api/tags/entities.json': require('./mock/tags/entities.json')
 };

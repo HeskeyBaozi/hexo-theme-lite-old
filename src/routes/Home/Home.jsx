@@ -10,11 +10,13 @@ function Home({
     </div>
 }
 
-Home.PropTypes = {};
+Home.PropTypes = {
+    postsListDataSource: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 function mapStateToProps(state, ownProps) {
     return {
-        postsListDataSource: state.posts.list.map(post_id => state.posts.entities[post_id])
+        postsListDataSource: state.posts.list.map(post_id => state.posts.entities[post_id]).filter(post => post)
     };
 }
 

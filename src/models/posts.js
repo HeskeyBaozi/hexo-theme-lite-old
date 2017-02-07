@@ -70,27 +70,30 @@ export default {
         },
         initializePostsMeta: function*({payload}, {put, select}) {
             const list = yield select(({posts}) => posts.list);
+            const entities = yield select(({posts}) => posts.entities);
             yield [
-                ...list.map(post_id => put({
-                    type: 'initializePostEntity',
-                    payload: {post_id}
-                })),
+                ...list.map(post_id => {
+                    "use strict";
+                    const isExists = entities[post_id];
+                    return !isExists ? put({
+                            type: 'initializePostEntity',
+                            payload: {post_id}
+                        }) : false;
+                }).filter(action => action),
                 put({type: 'initializeTags'}),
                 put({type: 'initializeCategories'})
             ];
         },
         initializePostEntity: function*({payload}, {put, call, select}) {
             const {post_id} = payload;
-            const isExists = yield select(({posts}) => posts.entities[post_id]);
-            if (!isExists) {
-                const {data} = yield call(fetchPostMeta, {post_id});
-                if (data) {
-                    yield put({
-                        type: 'savePostMeta',
-                        payload: {postMeta: data}
-                    });
-                }
+            const {data} = yield call(fetchPostMeta, {post_id});
+            if (data) {
+                yield put({
+                    type: 'savePostMeta',
+                    payload: {postMeta: data}
+                });
             }
+
         },
         initializeTags: function*({payload}, {put, call}) {
             const {data} = yield call(fetchTagsEntities);

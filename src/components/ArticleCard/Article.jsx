@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import styles from './styles.less';
 import moment from 'moment';
+import {Icon, Button} from 'antd';
+import {Link} from 'dva/router';
 
 function ArticleCard({
     title,
@@ -17,18 +19,28 @@ function ArticleCard({
     return (
         <div className={styles.cardContainer}>
             <div className={styles.article}>
-                <h1 className={styles.postTitle}>{title}</h1>
+                <h1 className={styles.postTitle}>
+                    {
+                        link ? <a href={link}>{title} <Icon type="link"/></a>
+                            : <Link to={`/posts/${post_id}`}>{title}</Link>
+                    }
+                </h1>
                 <div className={styles.postMeta}>
                     <span>published {moment(date).fromNow()} | updated {moment(updated).fromNow()}</span>
                 </div>
-                <div dangerouslySetInnerHTML={{__html: excerpt}}/>
+
                 <p>photos:</p>
                 <ul>
                     {
                         photos.map((photo, index) => <li key={photo + index}>{photo}</li>)
                     }
                 </ul>
-                <p>link: {link}</p>
+                <div dangerouslySetInnerHTML={{__html: excerpt}}/>
+                <div className={styles.readMore}>
+                    {
+                        excerpt ? <Link to={`/posts/${post_id}`}><Button type="ghost">Read More</Button></Link> : null
+                    }
+                </div>
             </div>
             <div className={styles.eof}></div>
         </div>
