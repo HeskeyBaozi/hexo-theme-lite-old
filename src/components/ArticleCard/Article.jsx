@@ -1,50 +1,57 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import styles from './styles.less';
 import moment from 'moment';
 import {Icon, Button} from 'antd';
 import {Link} from 'dva/router';
 
-function ArticleCard({
-    title,
-    date,
-    updated,
-    excerpt,
-    more,
-    photos,
-    link,
-    tags,
-    categories,
-    post_id
-}) {
-    return (
-        <div className={styles.cardContainer}>
-            <div className={styles.article}>
-                <h1 className={styles.postTitle}>
-                    {
-                        link ? <a href={link}>{title} <Icon type="link"/></a>
-                            : <Link to={`/posts/${post_id}`}>{title}</Link>
-                    }
-                </h1>
-                <div className={styles.postMeta}>
-                    <span>published {moment(date).fromNow()} | updated {moment(updated).fromNow()}</span>
-                </div>
 
-                <p>photos:</p>
-                <ul>
-                    {
-                        photos.map((photo, index) => <li key={photo + index}>{photo}</li>)
-                    }
-                </ul>
-                <div dangerouslySetInnerHTML={{__html: excerpt}}/>
-                <div className={styles.readMore}>
-                    {
-                        excerpt ? <Link to={`/posts/${post_id}`}><Button type="ghost">Read More</Button></Link> : null
-                    }
+class ArticleCard extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {
+            title,
+            date,
+            updated,
+            excerpt,
+            more,
+            photos,
+            link,
+            tags,
+            categories,
+            post_id
+        } = this.props;
+        return (
+            <div>
+                <div className={styles.article}>
+                    <h1 key="title" className={styles.postTitle}>
+                        {
+                            link ? <a href={link}>{title} <Icon type="link"/></a>
+                                : <Link to={`/posts/${post_id}`}>{title}</Link>
+                        }
+                    </h1>
+                    <div key="meta" className={styles.postMeta}>
+                        <span>published {moment(date).fromNow()} | updated {moment(updated).fromNow()}</span>
+                    </div>
+                    <ul key="photos">
+                        {
+                            photos.map((photo, index) => <li key={photo + index}>{photo}</li>)
+                        }
+                    </ul>
+                    <div key="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}/>
+                    <div key="read-more" className={styles.readMore}>
+                        {
+                            excerpt ?
+                                <Link to={`/posts/${post_id}`}><Button type="ghost">Read More</Button></Link> : null
+                        }
+                    </div>
                 </div>
+                <div className={styles.eof}></div>
             </div>
-            <div className={styles.eof}></div>
-        </div>
-    );
+        );
+    }
 }
 
 ArticleCard.propTypes = {

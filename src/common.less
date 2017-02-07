@@ -9,6 +9,14 @@
 @large-content-width: 740px;
 @small-content-width: 95%;
 
+.content-width {
+  margin: 0 auto;
+  width: @large-content-width;
+  @media (max-width: 768px) {
+    width: @small-content-width;
+  }
+}
+
 // content padding left and right width
 @large-padding-width: 30px;
 @small-padding-width: 20px;

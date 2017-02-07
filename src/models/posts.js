@@ -56,65 +56,45 @@ export default {
         }
     },
     effects: {
-        initializePostsList: function*({payload}, {put, call}) {
-            yield put({type: 'app/initializeAppMeta'});
+        initializePostsList: function*({payload, onComplete}, {put, call}) {
             const {data} = yield call(fetchPostsList);
             if (data) {
                 yield put({
                     type: 'savePostsList',
                     payload: {list: data}
                 });
-
-                yield put({type: 'initializePostsMeta'});
+                yield put({type: 'initializePostsMeta', onComplete});
             }
         },
-        initializePostsMeta: function*({payload}, {put, select}) {
+        initializePostsMeta: function*({payload, onComplete}, {put, select, call}) {
             const list = yield select(({posts}) => posts.list);
             const entities = yield select(({posts}) => posts.entities);
-            yield [
+            const [
+                {data:tagsEntities},
+                {data:categoriesEntities},
+                ...fetchPostsEntitiesResult
+            ] = yield [
+                call(fetchTagsEntities),
+                call(fetchCategoriesEntities),
                 ...list.map(post_id => {
                     "use strict";
                     const isExists = entities[post_id];
-                    return !isExists ? put({
-                            type: 'initializePostEntity',
-                            payload: {post_id}
-                        }) : false;
-                }).filter(action => action),
-                put({type: 'initializeTags'}),
-                put({type: 'initializeCategories'})
+                    if (!isExists) {
+                        return call(fetchPostMeta, {post_id});
+                    }
+                }).filter(call => call)
             ];
-        },
-        initializePostEntity: function*({payload}, {put, call, select}) {
-            const {post_id} = payload;
-            const {data} = yield call(fetchPostMeta, {post_id});
-            if (data) {
-                yield put({
-                    type: 'savePostMeta',
-                    payload: {postMeta: data}
-                });
-            }
 
-        },
-        initializeTags: function*({payload}, {put, call}) {
-            const {data} = yield call(fetchTagsEntities);
-            if (data) {
-                yield put({type: 'saveTags', payload: {tagsEntities: data}})
-            }
-        },
-        initializeCategories: function*({payload}, {put, call}) {
-            const {data} = yield call(fetchCategoriesEntities);
-            if (data) {
-                yield put({type: 'saveCategories', payload: {categoriesEntities: data}})
-            }
+            yield [
+                put({type: 'saveTags', payload: {tagsEntities}}),
+                put({type: 'saveCategories', payload: {categoriesEntities}}),
+                ...fetchPostsEntitiesResult.map(({data:postMeta}) => put({
+                    type: 'savePostMeta',
+                    payload: {postMeta}
+                }))
+            ];
+            onComplete();
         }
     },
-    subscriptions: {
-        initialize: function ({history, dispatch}) {
-            history.listen(location => {
-                if (location.pathname.includes('/')) {
-                    dispatch({type: 'initializePostsList'});
-                }
-            });
-        }
-    },
+    subscriptions: {},
 }

@@ -21,7 +21,7 @@ export default {
         }
     },
     effects: {
-        initializeAppMeta: function*({payload}, {put, call}) {
+        initializeAppMeta: function*({payload, onComplete}, {put, call}) {
             const {data} = yield call(fetchGlobalConfig);
             if (data) {
                 const {title, subtitle, author} = data;
@@ -29,6 +29,7 @@ export default {
                     type: 'saveAppMeta',
                     payload: {title, subtitle, author}
                 });
+                onComplete();
             }
         }
     },

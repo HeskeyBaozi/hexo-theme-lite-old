@@ -3,6 +3,7 @@ import styles from './styles.less';
 import {Layout} from 'antd';
 import Header from './Header/Header';
 import Content from './Content/Content';
+import UserInfo from './UserInfo/UserInfo';
 import Footer from './Footer/Footer';
 
 function MainLayout({
@@ -14,9 +15,8 @@ function MainLayout({
     return (
         <Layout className={styles.layout}>
             <Header/>
-            <Content title={title} subtitle={subtitle} author={author}>
-                {children}
-            </Content>
+            <UserInfo title={title} subtitle={subtitle} author={author}/>
+            <Content>{children}</Content>
             <Footer/>
         </Layout>
     );

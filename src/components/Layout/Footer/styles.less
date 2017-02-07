@@ -2,12 +2,19 @@
 
 .footer {
   padding: 5px 20px;
+  height: 60px;
   text-align: center;
+  font-size: 1rem;
   position: relative;
   z-index: 1;
-  font-size: 1rem;
   background-color: @white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 -1px 2px;
+
+  .content-width;
+  min-height: 200px;
+  margin-bottom: 16px;
+
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   &:before {
     z-index: -1;
@@ -17,7 +24,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    filter: blur(30px);
+    filter: blur(40px);
     background: @background-picture;
   }
 }

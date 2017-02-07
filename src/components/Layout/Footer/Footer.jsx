@@ -1,12 +1,12 @@
 import React, {PropTypes} from 'react';
 import styles from './styles.less';
-import {Layout} from 'antd';
 
 function Footer() {
     return (
-        <Layout.Footer className={styles.footer}>
-            <p>© 2017 Heskey Baozi, Theme: Lite</p>
-        </Layout.Footer>
+        <div className={styles.footer}>
+            <p>Theme: Lite</p>
+            <p>Heskey Baozi, 2017</p>
+        </div>
     );
 }
 
