@@ -3160,6 +3160,10 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "http://registry.npm.taobao.org/lodash.camelcase/download/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
 
+lodash.chunk@^4.2.0:
+  version "4.2.0"
+  resolved "http://registry.npm.taobao.org/lodash.chunk/download/lodash.chunk-4.2.0.tgz#66e5ce1f76ed27b4303d8c6512e8d1216e8106bc"
+
 lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "http://registry.npm.taobao.org/lodash.cond/download/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
@@ -4235,12 +4239,6 @@ rc-pagination@~1.6.0:
 rc-progress@~2.0.1:
   version "2.0.6"
   resolved "http://registry.npm.taobao.org/rc-progress/download/rc-progress-2.0.6.tgz#799af503904330d35184ab00d61ebfcbc005c486"
-
-rc-queue-anim@^0.13.0:
-  version "0.13.0"
-  resolved "http://registry.npm.taobao.org/rc-queue-anim/download/rc-queue-anim-0.13.0.tgz#8d4e39bf92da6654947e8b0cd0b71c6d86bea3aa"
-  dependencies:
-    velocity-animate "~1.3.1"
 
 rc-radio@~2.0.0:
   version "2.0.0"
@@ -5343,10 +5341,6 @@ validate-npm-package-license@^3.0.1:
 vary@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/vary/download/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
-
-velocity-animate@~1.3.1:
-  version "1.3.2"
-  resolved "http://registry.npm.taobao.org/velocity-animate/download/velocity-animate-1.3.2.tgz#eb90d4ddb5f818c35937380b4b7df59934a26c3b"
 
 vendors@^1.0.0:
   version "1.0.1"

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import styles from './styles.less';
-import {Layout} from 'antd';
+import {Layout, BackTop} from 'antd';
 import Header from './Header/Header';
 import Content from './Content/Content';
 import UserInfo from './UserInfo/UserInfo';
@@ -18,6 +18,7 @@ function MainLayout({
             <UserInfo title={title} subtitle={subtitle} author={author}/>
             <Content>{children}</Content>
             <Footer/>
+            <BackTop className={styles.backTop}/>
         </Layout>
     );
 }

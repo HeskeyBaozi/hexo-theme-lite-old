@@ -19,7 +19,12 @@ export default {
         list: [],
         entities: {},
         tagsEntities: {},
-        categoriesEntities: {}
+        categoriesEntities: {},
+        perPage: null,
+        momentFormat: {
+            time_format: null,
+            date_format: null
+        }
     },
     reducers: {
         savePostsList: function (state, {payload}) {
@@ -52,6 +57,24 @@ export default {
             return {
                 ...state,
                 categoriesEntities
+            };
+        },
+        savePerPage: function (state, {payload}) {
+            const {perPage} = payload;
+            return {
+                ...state,
+                perPage
+            };
+        },
+        saveMomentFormat: function (state, {payload}) {
+            const {time_format, date_format} = payload;
+            return {
+                ...state,
+                momentFormat: {
+                    ...state.momentFormat,
+                    time_format,
+                    date_format
+                }
             };
         }
     },
