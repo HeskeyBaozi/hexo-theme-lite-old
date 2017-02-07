@@ -1,19 +1,22 @@
 import dva from 'dva';
+import createLoading from 'dva-loading';
 import './index.html';
 import './index.css';
 
 // 1. Initialize
 const app = dva();
 
-app.model(require("./models/app"));
-
-app.model(require("./models/posts"));
-
 // 2. Plugins
-// app.use({});
+app.use(createLoading({
+    effects: true
+}));
 
 // 3. Model
-// app.model(require('./models/example'));
+app.model(require("./models/app"));
+app.model(require("./models/categories"));
+app.model(require("./models/tags"));
+app.model(require("./models/post_detail"));
+app.model(require("./models/posts"));
 
 // 4. Router
 app.router(require('./router'));

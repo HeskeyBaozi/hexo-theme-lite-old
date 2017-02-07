@@ -23,11 +23,42 @@ class PostsList extends Component {
 
     render() {
         const displayList = this.state.lists[this.state.currentPage - 1];
+        const {
+            tagsEntities,
+            categoriesEntities
+        } = this.props;
         return (
             <div>
                 <div className={styles.list}>
                     {
-                        displayList.map(post => <ArticleCard {...post} key={post.post_id}/>)
+                        displayList.map(post => {
+                            const {
+                                title,
+                                date,
+                                updated,
+                                excerpt,
+                                photos,
+                                link,
+                                tags,
+                                categories,
+                                post_id
+                            } = post;
+                            return <ArticleCard
+                                key={post_id}
+                                title={title}
+                                date={date}
+                                updated={updated}
+                                excerpt={excerpt}
+                                photos={photos}
+                                link={link}
+                                tags={tags.map(tag_id => tagsEntities[tag_id]).filter(tag => tag)}
+                                categories={
+                                    categories.map(category_id =>
+                                        categoriesEntities[category_id]).filter(category => category)
+                                }
+                                post_id={post_id}
+                            />;
+                        })
                     }
                 </div>
                 <div className={styles.pagination}>
@@ -44,9 +75,11 @@ class PostsList extends Component {
     }
 }
 
-PostsList.PropTypes = {
+PostsList.propTypes = {
     postsListDataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
-    perPage: PropTypes.number.isRequired
+    perPage: PropTypes.number.isRequired,
+    tagsEntities: PropTypes.object.isRequired,
+    categoriesEntities: PropTypes.object.isRequired
 };
 
 export default PostsList;

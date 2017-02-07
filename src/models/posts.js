@@ -4,22 +4,12 @@ import {
     fetchPostsList
 } from '../services/posts';
 
-import {
-    fetchTagsEntities
-} from '../services/tags';
-
-import {
-    fetchCategoriesEntities
-} from '../services/catagories';
-
 
 export default {
     namespace: 'posts',
     state: {
         list: [],
         entities: {},
-        tagsEntities: {},
-        categoriesEntities: {},
         perPage: null,
         momentFormat: {
             time_format: null,
@@ -43,20 +33,6 @@ export default {
                     ...state.entities,
                     [post_id]: postMeta
                 }
-            };
-        },
-        saveTags: function (state, {payload}) {
-            const {tagsEntities} = payload;
-            return {
-                ...state,
-                tagsEntities
-            };
-        },
-        saveCategories: function (state, {payload}) {
-            const {categoriesEntities} = payload;
-            return {
-                ...state,
-                categoriesEntities
             };
         },
         savePerPage: function (state, {payload}) {
@@ -92,13 +68,22 @@ export default {
         initializePostsMeta: function*({payload, onComplete}, {put, select, call}) {
             const list = yield select(({posts}) => posts.list);
             const entities = yield select(({posts}) => posts.entities);
+
+            // check tags
+            const isTagsPrepared = yield select(({tags}) => tags.tagsList.length);
+            if (!isTagsPrepared) {
+                yield put({type: 'tags/initializeTags'});
+            }
+
+            // check categories
+            const isCategoriesPrepared = yield select(({categories}) => categories.categoriesList.length);
+            if (!isCategoriesPrepared) {
+                yield put({type: 'categories/initializeCategories'});
+            }
+
             const [
-                {data:tagsEntities},
-                {data:categoriesEntities},
                 ...fetchPostsEntitiesResult
             ] = yield [
-                call(fetchTagsEntities),
-                call(fetchCategoriesEntities),
                 ...list.map(post_id => {
                     "use strict";
                     const isExists = entities[post_id];
@@ -109,11 +94,9 @@ export default {
             ];
 
             yield [
-                put({type: 'saveTags', payload: {tagsEntities}}),
-                put({type: 'saveCategories', payload: {categoriesEntities}}),
-                ...fetchPostsEntitiesResult.map(({data:postMeta}) => put({
+                ...fetchPostsEntitiesResult.map(({data}) => put({
                     type: 'savePostMeta',
-                    payload: {postMeta}
+                    payload: {postMeta: data}
                 }))
             ];
             onComplete();
