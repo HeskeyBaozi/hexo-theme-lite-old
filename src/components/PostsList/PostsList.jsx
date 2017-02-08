@@ -2,15 +2,12 @@ import React, {PropTypes, Component} from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import styles from './styles.less';
 import {Pagination} from 'antd';
-import chunk from 'lodash.chunk';
 
 class PostsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lists: chunk(props.postsListDataSource, props.perPage),
-            currentPage: 1,
-            allLeaved: false
+            currentPage: 1
         }
     }
 
@@ -19,14 +16,35 @@ class PostsList extends Component {
             currentPage: page
         });
         window.scrollTo(0, 0);
+        const {
+            postsListDataSource,
+            fetchPostsContent
+        } = this.props;
+        const displayList = postsListDataSource[page - 1];
+        if (!displayList.every(post => post.content)) {
+            fetchPostsContent(displayList.map(post => post.post_id));
+        }
     };
 
+    componentWillMount() {
+        const {
+            postsListDataSource,
+            fetchPostsContent
+        } = this.props;
+        const displayListPageOne = postsListDataSource[0];
+        fetchPostsContent(displayListPageOne.map(post => post.post_id));
+    }
+
     render() {
-        const displayList = this.state.lists[this.state.currentPage - 1];
         const {
             tagsEntities,
-            categoriesEntities
+            categoriesEntities,
+            postsListDataSource,
+            momentFormat,
+            perPage,
+            total
         } = this.props;
+        const displayList = postsListDataSource[this.state.currentPage - 1];
         return (
             <div>
                 <div className={styles.list}>
@@ -41,7 +59,8 @@ class PostsList extends Component {
                                 link,
                                 tags,
                                 categories,
-                                post_id
+                                post_id,
+                                content
                             } = post;
                             return <ArticleCard
                                 key={post_id}
@@ -51,12 +70,14 @@ class PostsList extends Component {
                                 excerpt={excerpt}
                                 photos={photos}
                                 link={link}
+                                content={content}
                                 tags={tags.map(tag_id => tagsEntities[tag_id]).filter(tag => tag)}
                                 categories={
                                     categories.map(category_id =>
                                         categoriesEntities[category_id]).filter(category => category)
                                 }
                                 post_id={post_id}
+                                momentFormat={momentFormat}
                             />;
                         })
                     }
@@ -65,8 +86,8 @@ class PostsList extends Component {
                     <Pagination
                         size="small"
                         current={this.state.currentPage}
-                        total={this.props.postsListDataSource.length}
-                        pageSize={this.props.perPage}
+                        total={total}
+                        pageSize={perPage}
                         onChange={this.handlePageChange}
                     />
                 </div>
@@ -76,10 +97,13 @@ class PostsList extends Component {
 }
 
 PostsList.propTypes = {
-    postsListDataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+    postsListDataSource: PropTypes.arrayOf(PropTypes.array).isRequired,
     perPage: PropTypes.number.isRequired,
     tagsEntities: PropTypes.object.isRequired,
-    categoriesEntities: PropTypes.object.isRequired
+    categoriesEntities: PropTypes.object.isRequired,
+    momentFormat: PropTypes.object.isRequired,
+    total: PropTypes.number.isRequired,
+    fetchPostsContent: PropTypes.func.isRequired
 };
 
 export default PostsList;

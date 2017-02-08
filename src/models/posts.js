@@ -52,6 +52,20 @@ export default {
                     date_format
                 }
             };
+        },
+        savePostContent: function (state, {payload}) {
+            const {contentObject} = payload;
+            const {content, post_id} = contentObject;
+            return {
+                ...state,
+                entities: {
+                    ...state.entities,
+                    [post_id]: {
+                        ...state.entities[post_id],
+                        content
+                    }
+                }
+            };
         }
     },
     effects: {
@@ -84,22 +98,37 @@ export default {
             const [
                 ...fetchPostsEntitiesResult
             ] = yield [
-                ...list.map(post_id => {
+                ...list.map(chunk => chunk.map(post_id => {
                     "use strict";
                     const isExists = entities[post_id];
                     if (!isExists) {
                         return call(fetchPostMeta, {post_id});
                     }
-                }).filter(call => call)
+                }).filter(call => call))
             ];
 
             yield [
-                ...fetchPostsEntitiesResult.map(({data}) => put({
+                ...fetchPostsEntitiesResult.map(chunk => chunk.map(({data}) => put({
                     type: 'savePostMeta',
                     payload: {postMeta: data}
-                }))
+                })))
             ];
             onComplete();
+        },
+        initializePostsContent: function*({payload}, {put, call, select}) {
+            const {postIdArray} = payload;
+            const [
+                ...fetchPostsContentResult
+            ] = yield [
+                ...postIdArray.map(post_id => call(fetchPostFieldValue, {post_id, fieldName: 'content'}))
+            ];
+
+            yield [
+                ...fetchPostsContentResult.map(({data}) => put({
+                    type: 'savePostContent',
+                    payload: {contentObject: data}
+                }))
+            ];
         }
     },
     subscriptions: {},

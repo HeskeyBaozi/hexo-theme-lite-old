@@ -1,8 +1,12 @@
 @import "../../common";
 
-.article {
+.articleContent {
   p {
     margin: 0 0 20px 0;
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   ul {
@@ -11,6 +15,15 @@
     margin: 14px 0;
     li {
       list-style: circle;
+    }
+  }
+
+  ol {
+    list-style: none;
+    padding-left: 40px;
+    margin: 14px 0;
+    li {
+      list-style: decimal;
     }
   }
 
@@ -24,20 +37,99 @@
     border-left: 4px solid @normal;
   }
 
-  .pullquote {
+  pre {
+    font-family: @code-family;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures;
+  }
+
+  :global(.pullquote) {
     width: 40%;
   }
 
-  .right {
+  :global(.right) {
     float: right;
     margin-left: 10px;
     margin-right: 5px;
   }
 
-  .left {
+  :global(.left) {
     float: left;
     margin-left: 5px;
     margin-right: 10px;
+  }
+
+  code {
+    display: inline-block;
+    color: @primary-color;
+    font-family: @code-family;
+    padding: 3px 5px;
+    margin-top: 5px;
+    border: 1px solid @primary-color;
+    border-radius: 4px;
+  }
+
+  :global(.highlight) {
+    background-color: @highlight-background;
+    color: @white;
+    padding: 10px 20px;
+    margin: 0 -@large-padding-width;
+
+    @media (max-width: 768px) {
+      margin: 0 -@small-padding-width;
+    }
+
+    :global(.gutter) {
+      text-align: right;
+      padding-right: 8px;
+      border-right: 1px solid gray;
+    }
+
+    :global(.marked) {
+      background-color: @highlight-marked-background;
+    }
+
+    :global(.code) {
+      vertical-align: top;
+      padding-left: 8px;
+      :global(.keyword) {
+        color: @keyword;
+      }
+
+      :global(.string) {
+        color: @string;
+      }
+
+      :global(.number) {
+        color: @number;
+      }
+
+      :global(.built_in) {
+        color: @built-in;
+      }
+
+      :global(.selector-tag) {
+        color: @built-in;
+      }
+
+      :global(.params) {
+        color: @params;
+      }
+    }
+
+    figcaption {
+      text-align: right;
+      color: @white;
+
+      & > * {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
   }
 }
 
@@ -52,6 +144,7 @@
 
 .readMore {
   text-align: center;
+  margin: 10px 0;
 }
 
 .eof {
