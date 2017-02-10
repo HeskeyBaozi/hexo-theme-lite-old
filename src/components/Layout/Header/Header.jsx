@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import styles from './styles.less';
 import {Row, Col, Menu, Icon, Dropdown, Layout} from 'antd';
 import {Link} from 'dva/router';
-import {LogoURL} from '../../../theme.config';
+import {pictureURL} from '../../../config/general';
 
 function getLast(array) {
     return array[array.length - 1];
@@ -24,7 +24,9 @@ function Header({
             </Link>
         </Menu.Item>
         <Menu.Item key="archives">
-            <Icon type="file-text"/> Archives
+            <Link to="/archives">
+                <Icon type="file-text"/> Archives
+            </Link>
         </Menu.Item>
         <Menu.Item key="categories">
             <Icon type="appstore-o"/> Categories
@@ -52,7 +54,9 @@ function Header({
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="archives">
-                                <Icon type="file-text"/> Archives
+                                <Link to="/archives">
+                                    <Icon type="file-text"/> Archives
+                                </Link>
                             </Menu.Item>
                             <Menu.Item key="categories">
                                 <Icon type="appstore-o"/> Categories
@@ -76,7 +80,7 @@ function Header({
                                 <Icon type="bars"/>
                             </a>
                         </Dropdown>
-                        <img src={LogoURL} alt="logo" width={28} height={28} className={styles.logo}/>
+                        <img src={pictureURL.Logo} alt="logo" width={28} height={28} className={styles.logo}/>
                     </div>
                 </Col>
             </Row>

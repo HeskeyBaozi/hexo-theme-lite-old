@@ -2,6 +2,7 @@ import {
     fetchPostMeta,
     fetchPostFieldValue
 } from '../services/posts';
+import NProgress from 'nprogress';
 
 export default {
     namespace: 'post_detail',
@@ -33,6 +34,7 @@ export default {
     },
     effects: {
         initializePostPage: function*({payload, onComplete}, {put, select, take}) {
+            NProgress.start();
             const {post_id} = payload;
 
             // check post meta
@@ -49,18 +51,21 @@ export default {
                     payload: {postMeta: postEntity}
                 });
             }
+            NProgress.inc();
 
             // check tags
             const isTagsPrepared = yield select(({tags}) => tags.tagsList.length);
             if (!isTagsPrepared) {
                 yield put({type: 'tags/initializeTags'});
             }
+            NProgress.inc();
 
             // check categories
             const isCategoriesPrepared = yield select(({categories}) => categories.categoriesList.length);
             if (!isCategoriesPrepared) {
                 yield put({type: 'categories/initializeCategories'});
             }
+            NProgress.inc();
 
             onComplete();
 
@@ -72,6 +77,7 @@ export default {
                     payload: {post_id}
                 });
             }
+            NProgress.done();
         },
         initializePostMeta: function*({payload}, {put, call}) {
             const {post_id} = payload;

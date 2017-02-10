@@ -1,9 +1,9 @@
 import React from 'react';
 import {Router, Route, IndexRoute} from 'dva/router';
 import App from './routes/App/App';
-import Home from './routes/Home/Home';
+import Home from './routes/HomePage/Home';
 import PostPage from './routes/PostPage/PostPage';
-import NProgress from 'nprogress';
+import Archives from './routes/ArchivesPage/Archives';
 
 
 function RouterConfig({history, app}) {
@@ -16,25 +16,17 @@ function RouterConfig({history, app}) {
     }
 
     function requirePostsListPrepared(nextState, replace, callback) {
-        NProgress.start();
         app._store.dispatch({
             type: 'posts/initializePostsList',
-            onComplete: function () {
-                callback();
-                NProgress.done();
-            }
+            onComplete: callback
         });
     }
 
     function requirePostPagePrepared(nextState, replace, callback) {
-        NProgress.start();
         app._store.dispatch({
             type: 'post_detail/initializePostPage',
             payload: {post_id: nextState.params.post_id},
-            onComplete: function () {
-                callback();
-                NProgress.done();
-            }
+            onComplete: callback
         });
     }
 
@@ -54,6 +46,11 @@ function RouterConfig({history, app}) {
                     name="post-detail"
                     component={PostPage}
                     onEnter={requirePostPagePrepared}
+                />
+                <Route
+                    path="/archives"
+                    name="archives"
+                    component={Archives}
                 />
             </Route>
         </Router>

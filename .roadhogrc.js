@@ -1,5 +1,3 @@
-import {join} from 'path';
-
 export default {
     entry: './src/index.js',
     outputPath: './source',
@@ -10,12 +8,13 @@ export default {
         'transform-runtime',
         ['import', {libraryName: 'antd', style: true}]
     ],
+    extraPostCSSPlugins: [
+        require('precss')
+    ],
     env: {
         development: {
             extraBabelPlugins: ['dva-hmr']
         }
     },
-    theme: {
-        'primary-color': '#5c5c5c'
-    }
+    theme: './src/config/antd.js'
 }

@@ -3,7 +3,7 @@ import {
     fetchPostMeta,
     fetchPostsList
 } from '../services/posts';
-
+import NProgress from 'nprogress';
 
 export default {
     namespace: 'posts',
@@ -69,15 +69,19 @@ export default {
         }
     },
     effects: {
-        initializePostsList: function*({payload, onComplete}, {put, call}) {
-            const {data} = yield call(fetchPostsList);
-            if (data) {
+        initializePostsList: function*({payload, onComplete}, {put, call, select}) {
+            NProgress.start();
+            // check list
+            const isEmptyList = yield select(({posts}) => !posts.list.length);
+            if (isEmptyList) {
+                const {data} = yield call(fetchPostsList);
                 yield put({
                     type: 'savePostsList',
                     payload: {list: data}
                 });
-                yield put({type: 'initializePostsMeta', onComplete});
             }
+            NProgress.inc();
+            yield put({type: 'initializePostsMeta', onComplete});
         },
         initializePostsMeta: function*({payload, onComplete}, {put, select, call, take}) {
             const list = yield select(({posts}) => posts.list);
@@ -89,13 +93,14 @@ export default {
                 yield put({type: 'tags/initializeTags'});
                 yield take('tags/saveTagsEntities');
             }
-
+            NProgress.inc();
             // check categories
             const isCategoriesPrepared = yield select(({categories}) => categories.categoriesList.length);
             if (!isCategoriesPrepared) {
                 yield put({type: 'categories/initializeCategories'});
                 yield take('categories/saveCategoriesEntities');
             }
+            NProgress.inc();
 
             const [
                 ...fetchPostsEntitiesResult
@@ -108,6 +113,7 @@ export default {
                     }
                 }).filter(call => call))
             ];
+            NProgress.inc();
 
             yield [
                 ...fetchPostsEntitiesResult.map(chunk => chunk.map(({data}) => put({
@@ -115,6 +121,7 @@ export default {
                     payload: {postMeta: data}
                 })))
             ];
+            NProgress.inc();
             onComplete();
         },
         initializePostsContent: function*({payload}, {put, call, select}) {
@@ -124,6 +131,7 @@ export default {
             ] = yield [
                 ...postIdArray.map(post_id => call(fetchPostFieldValue, {post_id, fieldName: 'content'}))
             ];
+            NProgress.inc();
 
             yield [
                 ...fetchPostsContentResult.map(({data}) => put({
@@ -131,6 +139,7 @@ export default {
                     payload: {contentObject: data}
                 }))
             ];
+            NProgress.done();
         }
     },
     subscriptions: {},
