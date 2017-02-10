@@ -2,11 +2,22 @@ import React, {PropTypes} from 'react';
 import styles from './styles.less';
 import {Row, Col, Menu, Icon, Dropdown, Layout} from 'antd';
 import {Link} from 'dva/router';
-import Logo from '../../../assets/logo.png';
+import {LogoURL} from '../../../theme.config';
 
-function Header() {
+function getLast(array) {
+    return array[array.length - 1];
+}
 
-    const menu = <Menu defaultSelectedKeys={['home']}>
+function getName(last) {
+    return last.name;
+}
+
+function Header({
+    routes
+}) {
+    const selectedName = getName(getLast(routes));
+
+    const menu = <Menu selectedKeys={[selectedName]}>
         <Menu.Item key="home">
             <Link to="/">
                 <Icon type="home"/> Home
@@ -34,7 +45,7 @@ function Header() {
             <Row>
                 <Col xs={0} sm={24} md={24} lg={24}>
                     <div className={styles.heading}>
-                        <Menu mode="horizontal" defaultSelectedKeys={['home']} className={styles.menu}>
+                        <Menu mode="horizontal" selectedKeys={[selectedName]} className={styles.menu}>
                             <Menu.Item key="home">
                                 <Link to="/">
                                     <Icon type="home"/> Home
@@ -65,7 +76,7 @@ function Header() {
                                 <Icon type="bars"/>
                             </a>
                         </Dropdown>
-                        <img src={Logo} alt="logo" width={28} height={28} className={styles.logo}/>
+                        <img src={LogoURL} alt="logo" width={28} height={28} className={styles.logo}/>
                     </div>
                 </Col>
             </Row>
@@ -73,6 +84,8 @@ function Header() {
     );
 }
 
-Header.propTypes = {};
+Header.propTypes = {
+    routes: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Header;

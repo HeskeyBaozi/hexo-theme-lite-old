@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import styles from './styles.less';
-import Avatar from '../../../assets/avatar.jpg';
+import {AvatarURL} from '../../../../theme.config';
 
 function UserInfo({
     title,
@@ -10,7 +10,7 @@ function UserInfo({
     return (
         <div className={styles.info}>
             <div className={styles.author}>
-                <img src={Avatar} alt="avatar" title={author} className={styles.avatar}/>
+                <img src={AvatarURL} alt="avatar" title={author} className={styles.avatar}/>
             </div>
             <div>
                 <p className={styles.title}>{title}</p>

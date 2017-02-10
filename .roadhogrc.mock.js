@@ -1,3 +1,6 @@
+import {join} from 'path';
+import {readFileSync} from 'fs';
+
 export default {
     'GET /api/config/global.json': require('./mock/config/global.json'),
 
@@ -17,5 +20,11 @@ export default {
 
     // tags
     'GET /api/tags/entities.json': require('./mock/tags/entities.json'),
-    'GET /api/tags/index.json': require('./mock/tags/index.json')
+    'GET /api/tags/index.json': require('./mock/tags/index.json'),
+
+    // assets
+    'GET /assets/*': function (request, response) {
+        response.type('jpg');
+        response.end(readFileSync(`../../public/${request.url}`))
+    }
 };

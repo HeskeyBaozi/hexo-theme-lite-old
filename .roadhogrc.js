@@ -1,3 +1,5 @@
+import {join} from 'path';
+
 export default {
     entry: './src/index.js',
     outputPath: './source',

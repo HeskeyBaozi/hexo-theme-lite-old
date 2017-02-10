@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import styles from './styles.less';
 import {Pagination} from 'antd';
+import QueueAnimate from 'rc-queue-anim';
 
 class PostsList extends Component {
     constructor(props) {
@@ -15,7 +16,6 @@ class PostsList extends Component {
         this.setState({
             currentPage: page
         });
-        window.scrollTo(0, 0);
         const {
             postsListDataSource,
             fetchPostsContent
@@ -47,41 +47,44 @@ class PostsList extends Component {
         const displayList = postsListDataSource[this.state.currentPage - 1];
         return (
             <div>
-                <div className={styles.list}>
-                    {
-                        displayList.map(post => {
-                            const {
-                                title,
-                                date,
-                                updated,
-                                excerpt,
-                                photos,
-                                link,
-                                tags,
-                                categories,
-                                post_id,
-                                content
-                            } = post;
-                            return <ArticleCard
-                                key={post_id}
-                                title={title}
-                                date={date}
-                                updated={updated}
-                                excerpt={excerpt}
-                                photos={photos}
-                                link={link}
-                                content={content}
-                                tags={tags.map(tag_id => tagsEntities[tag_id]).filter(tag => tag)}
-                                categories={
-                                    categories.map(category_id =>
-                                        categoriesEntities[category_id]).filter(category => category)
-                                }
-                                post_id={post_id}
-                                momentFormat={momentFormat}
-                            />;
-                        })
-                    }
-                </div>
+                <QueueAnimate type={['right', 'left']} onEnd={window.scrollTo(0, 0)} className={styles.list}>
+                    <div key={`page${this.state.currentPage}`}>
+                        {
+                            displayList.map(post => {
+                                const {
+                                    title,
+                                    date,
+                                    updated,
+                                    excerpt,
+                                    photos,
+                                    link,
+                                    tags,
+                                    categories,
+                                    post_id,
+                                    content
+                                } = post;
+                                return <ArticleCard
+                                    key={post_id}
+                                    title={title}
+                                    date={date}
+                                    updated={updated}
+                                    excerpt={excerpt}
+                                    photos={photos}
+                                    link={link}
+                                    content={content}
+                                    tags={tags.map(tag_id => tagsEntities[tag_id]).filter(tag => tag)}
+                                    categories={
+                                        categories.map(category_id =>
+                                            categoriesEntities[category_id]).filter(category => category)
+                                    }
+                                    post_id={post_id}
+                                    momentFormat={momentFormat}
+                                    simple
+                                />;
+                            })
+                        }
+                    </div>
+                </QueueAnimate>
                 <div className={styles.pagination}>
                     <Pagination
                         simple

@@ -1,4 +1,4 @@
-@import "../../common";
+@import "../../theme_style";
 
 .articleContent {
   p {
@@ -6,6 +6,12 @@
     img {
       display: block;
       margin: 0 auto;
+      max-width: 100%;
+      transition: all 500ms;
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 5px gray;
+      }
     }
   }
 

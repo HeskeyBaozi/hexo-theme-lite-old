@@ -2,6 +2,8 @@ import dva from 'dva';
 import createLoading from 'dva-loading';
 import './index.html';
 import './index.css';
+import 'nprogress/nprogress.css';
+
 
 // 1. Initialize
 const app = dva();

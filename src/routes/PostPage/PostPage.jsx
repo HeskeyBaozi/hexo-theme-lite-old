@@ -37,6 +37,7 @@ function PostPage({
         }
         post_id={post_id}
         momentFormat={momentFormat}
+        simple={false}
     />
 }
 

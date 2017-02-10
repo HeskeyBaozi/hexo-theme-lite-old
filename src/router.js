@@ -3,6 +3,7 @@ import {Router, Route, IndexRoute} from 'dva/router';
 import App from './routes/App/App';
 import Home from './routes/Home/Home';
 import PostPage from './routes/PostPage/PostPage';
+import NProgress from 'nprogress';
 
 
 function RouterConfig({history, app}) {
@@ -15,25 +16,45 @@ function RouterConfig({history, app}) {
     }
 
     function requirePostsListPrepared(nextState, replace, callback) {
+        NProgress.start();
         app._store.dispatch({
             type: 'posts/initializePostsList',
-            onComplete: callback
+            onComplete: function () {
+                callback();
+                NProgress.done();
+            }
         });
     }
 
     function requirePostPagePrepared(nextState, replace, callback) {
+        NProgress.start();
         app._store.dispatch({
             type: 'post_detail/initializePostPage',
             payload: {post_id: nextState.params.post_id},
-            onComplete: callback
+            onComplete: function () {
+                callback();
+                NProgress.done();
+            }
         });
     }
 
     return (
         <Router history={history}>
-            <Route path="/" component={App} onEnter={requireGlobalMetaPrepared}>
-                <IndexRoute component={Home} onEnter={requirePostsListPrepared}/>
-                <Route path="/posts/:post_id" component={PostPage} onEnter={requirePostPagePrepared}/>
+            <Route path="/"
+                   component={App}
+                   onEnter={requireGlobalMetaPrepared}
+            >
+                <IndexRoute
+                    name="home"
+                    component={Home}
+                    onEnter={requirePostsListPrepared}
+                />
+                <Route
+                    path="/posts/:post_id"
+                    name="post-detail"
+                    component={PostPage}
+                    onEnter={requirePostPagePrepared}
+                />
             </Route>
         </Router>
     );

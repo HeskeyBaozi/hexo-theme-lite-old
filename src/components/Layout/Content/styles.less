@@ -1,15 +1,29 @@
-@import "../../../common";
+@import "../../../theme_style";
 
 .contentInner {
-  margin: 0 auto;
-  width: @large-content-width;
-  @media (max-width: 768px) {
-    width: @small-content-width;
+  .content-width;
+  margin: 16px + @large-header-height auto;
+  position: relative;
+  background-color: @white;
+  z-index: 1;
+  border-radius: 5px;
+  min-height: 600px;
+  &:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: @info-min-height;
+    left: 0;
+    filter: blur(40px);
+    background: @background-picture;
   }
 }
 
 .container {
-  background-color: @white;
+  position: relative;
+  min-height: 50px;
   padding: 16px @large-padding-width;
   @media (max-width: 768px) {
     padding: 10px @small-padding-width;

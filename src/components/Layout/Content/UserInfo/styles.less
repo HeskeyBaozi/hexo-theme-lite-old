@@ -1,0 +1,29 @@
+@import "../../../../theme_style";
+
+.info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+  min-height: @info-min-height;
+}
+
+.author {
+
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px;
+  transition: transform 1s;
+  &:hover {
+    transform: rotate(360deg);
+  }
+}
+
+.title {
+  font-size: 1.3em;
+}
