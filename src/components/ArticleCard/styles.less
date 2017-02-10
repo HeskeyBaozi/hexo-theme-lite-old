@@ -73,6 +73,7 @@
   :global(.highlight) {
     background-color: @highlight-background;
     color: @white;
+    overflow-x: scroll;
     padding: 10px 20px;
     margin: 0 -@large-padding-width;
 
@@ -118,17 +119,12 @@
       }
     }
 
-    figcaption {
-      text-align: right;
-      color: @white;
-
-      & > * {
-        margin: 0 5px;
-      }
+    figcaption > * {
+      margin: 0 5px;
     }
   }
 
-  table {
+  & > table {
     width: 100%;
   }
 }

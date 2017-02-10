@@ -1,13 +1,16 @@
 import React, {PropTypes} from 'react';
 import styles from './styles.less';
 import {Row, Col, Menu, Icon, Dropdown, Layout} from 'antd';
+import {Link} from 'dva/router';
 import Logo from '../../../assets/logo.png';
 
 function Header() {
 
     const menu = <Menu defaultSelectedKeys={['home']}>
         <Menu.Item key="home">
-            <Icon type="home"/> Home
+            <Link to="/">
+                <Icon type="home"/> Home
+            </Link>
         </Menu.Item>
         <Menu.Item key="archives">
             <Icon type="file-text"/> Archives
@@ -33,7 +36,9 @@ function Header() {
                     <div className={styles.heading}>
                         <Menu mode="horizontal" defaultSelectedKeys={['home']} className={styles.menu}>
                             <Menu.Item key="home">
-                                <Icon type="home"/> Home
+                                <Link to="/">
+                                    <Icon type="home"/> Home
+                                </Link>
                             </Menu.Item>
                             <Menu.Item key="archives">
                                 <Icon type="file-text"/> Archives
@@ -53,15 +58,15 @@ function Header() {
                         </Menu>
                     </div>
                 </Col>
-                <Col xs={2} sm={0} md={0} lg={0}>
-                    <Dropdown trigger={['click']} overlay={menu}>
-                        <a href="#" className="ant-dropdown-link">
-                            <Icon type="bars" className={styles.bars}/>
-                        </a>
-                    </Dropdown>
-                </Col>
-                <Col xs={2} sm={0} md={0} lg={0} offset={9}>
-                    <img src={Logo} alt="logo" width={28} height={28} className={styles.logo}/>
+                <Col xs={24} sm={0} md={0} lg={0}>
+                    <div className={styles.headingSmall}>
+                        <Dropdown trigger={['click']} overlay={menu}>
+                            <a href="#" className={styles.bars + ' ant-dropdown-link'}>
+                                <Icon type="bars"/>
+                            </a>
+                        </Dropdown>
+                        <img src={Logo} alt="logo" width={28} height={28} className={styles.logo}/>
+                    </div>
                 </Col>
             </Row>
         </Layout.Header>

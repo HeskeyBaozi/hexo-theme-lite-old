@@ -2,7 +2,7 @@
 
 .info {
   .content-width;
-  margin-top: 16px;
+
   background-color: @white;
   position: relative;
   z-index: 1;
@@ -15,9 +15,11 @@
   border-top-left-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 -1px 3px;
 
+  margin-top: 16px + @large-header-height;
   min-height: @large-information-card-height;
   @media (max-width: 768px) {
     min-height: @small-information-card-height;
+    margin-top: 16px + @small-header-height;
   }
 
   &:before {

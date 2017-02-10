@@ -84,7 +84,7 @@ class PostsList extends Component {
                 </div>
                 <div className={styles.pagination}>
                     <Pagination
-                        size="small"
+                        simple
                         current={this.state.currentPage}
                         total={total}
                         pageSize={perPage}

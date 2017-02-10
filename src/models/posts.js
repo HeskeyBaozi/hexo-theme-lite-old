@@ -79,7 +79,7 @@ export default {
                 yield put({type: 'initializePostsMeta', onComplete});
             }
         },
-        initializePostsMeta: function*({payload, onComplete}, {put, select, call}) {
+        initializePostsMeta: function*({payload, onComplete}, {put, select, call, take}) {
             const list = yield select(({posts}) => posts.list);
             const entities = yield select(({posts}) => posts.entities);
 
@@ -87,12 +87,14 @@ export default {
             const isTagsPrepared = yield select(({tags}) => tags.tagsList.length);
             if (!isTagsPrepared) {
                 yield put({type: 'tags/initializeTags'});
+                yield take('tags/saveTagsEntities');
             }
 
             // check categories
             const isCategoriesPrepared = yield select(({categories}) => categories.categoriesList.length);
             if (!isCategoriesPrepared) {
                 yield put({type: 'categories/initializeCategories'});
+                yield take('categories/saveCategoriesEntities');
             }
 
             const [

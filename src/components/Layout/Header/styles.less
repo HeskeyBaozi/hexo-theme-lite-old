@@ -1,10 +1,13 @@
 @import "../../../common";
 
 .header {
-  position: relative;
-  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   background-color: @white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 25px;
   height: @large-header-height;
   line-height: @large-header-height;
   padding: 0;
@@ -43,6 +46,17 @@
   width: @large-content-width;
 }
 
-.bars {
-  font-size: 1.3em;
+.headingSmall {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: @small-header-height;
+  .bars {
+    position: fixed;
+    left: 20px;
+    font-size: 1.3em;
+    float: left;
+  }
 }
+
+
