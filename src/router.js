@@ -1,10 +1,8 @@
-import React from 'react';
-import {Router, Route, IndexRoute} from 'dva/router';
-import App from './routes/App/App';
-import Home from './routes/HomePage/Home';
-import PostPage from './routes/PostPage/PostPage';
-import Archives from './routes/ArchivesPage/Archives';
+"use strict";
 
+import React from "react";
+import {Router} from "dva/router";
+import App from "./routes/App/App";
 
 function RouterConfig({history, app}) {
     function requireGlobalMetaPrepared(nextState, replace, callback) {
@@ -30,31 +28,48 @@ function RouterConfig({history, app}) {
         });
     }
 
-    return (
-        <Router history={history}>
-            <Route path="/"
-                   component={App}
-                   onEnter={requireGlobalMetaPrepared}
-            >
-                <IndexRoute
-                    name="home"
-                    component={Home}
-                    onEnter={requirePostsListPrepared}
-                />
-                <Route
-                    path="/posts/:post_id"
-                    name="post-detail"
-                    component={PostPage}
-                    onEnter={requirePostPagePrepared}
-                />
-                <Route
-                    path="/archives"
-                    name="archives"
-                    component={Archives}
-                />
-            </Route>
-        </Router>
-    );
+    const routes = [
+        {
+            path: '/',
+            component: App,
+            onEnter: requireGlobalMetaPrepared,
+            getIndexRoute: function (nextState, callback) {
+                require.ensure([], require => {
+                    const Home = require('./routes/HomePage/Home');
+                    callback(null, {
+                        name: 'home',
+                        component: Home,
+                        onEnter: requirePostsListPrepared
+                    });
+                });
+            },
+            childRoutes: [
+                {
+                    path: 'posts/:post_id',
+                    name: 'post-detail',
+                    onEnter: requirePostPagePrepared,
+                    getComponent: function (nextState, callback) {
+                        require.ensure([], require => {
+                            const PostPage = require('./routes/PostPage/PostPage');
+                            callback(null, PostPage);
+                        });
+                    }
+                },
+                {
+                    path: 'archives',
+                    name: 'archives',
+                    getComponent: function (nextState, callback) {
+                        require.ensure([], require => {
+                            const Archives = require('./routes/ArchivesPage/Archives');
+                            callback(null, Archives);
+                        })
+                    }
+                }
+            ]
+        }
+    ];
+
+    return <Router history={history} routes={routes}/>;
 }
 
 export default RouterConfig;
