@@ -4,6 +4,7 @@ import React from "react";
 import {Router} from "dva/router";
 import App from "./routes/App/App";
 
+
 function RouterConfig({history, app}) {
     function requireGlobalMetaPrepared(nextState, replace, callback) {
         app._store.dispatch({
@@ -24,6 +25,13 @@ function RouterConfig({history, app}) {
         app._store.dispatch({
             type: 'post_detail/initializePostPage',
             payload: {post_id: nextState.params.post_id},
+            onComplete: callback
+        });
+    }
+
+    function requireArchivesPrepared(nextState, replace, callback) {
+        app._store.dispatch({
+            type: 'posts/initializeArchivesPage',
             onComplete: callback
         });
     }
@@ -58,6 +66,7 @@ function RouterConfig({history, app}) {
                 {
                     path: 'archives',
                     name: 'archives',
+                    onEnter: requireArchivesPrepared,
                     getComponent: function (nextState, callback) {
                         require.ensure([], require => {
                             const Archives = require('./routes/ArchivesPage/Archives');

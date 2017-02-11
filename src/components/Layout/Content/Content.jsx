@@ -1,9 +1,9 @@
-import React, {PropTypes} from 'react';
-import {Layout} from 'antd';
-import styles from './styles.css';
-import UserInfo from './UserInfo/UserInfo';
-import Footer from '../Footer/Footer';
-import QueueAnimate from 'rc-queue-anim';
+import React, {PropTypes} from "react";
+import {Layout} from "antd";
+import styles from "./styles.css";
+import UserInfo from "./UserInfo/UserInfo";
+import Footer from "../Footer/Footer";
+import QueueAnimate from "rc-queue-anim";
 
 function Content({
     children,
@@ -13,7 +13,7 @@ function Content({
 }) {
     return (
         <Layout.Content className={styles.contentInner}>
-            <QueueAnimate delay={1000} interval={250}>
+            <QueueAnimate type={['right', 'left']} className={styles.queueAnimate}>
                 <div key="user-information">
                     <UserInfo author={author} subtitle={subtitle} title={title}/>
                 </div>

@@ -1,8 +1,8 @@
-import React, {PropTypes, Component} from 'react';
-import ArticleCard from '../ArticleCard/ArticleCard';
-import styles from './styles.css';
-import {Pagination} from 'antd';
-import QueueAnimate from 'rc-queue-anim';
+import React, {PropTypes, Component} from "react";
+import ArticleCard from "../ArticleCard/ArticleCard";
+import styles from "./styles.css";
+import {Pagination} from "antd";
+import QueueAnimate from "rc-queue-anim";
 
 class PostsList extends Component {
     constructor(props) {
@@ -46,8 +46,21 @@ class PostsList extends Component {
         } = this.props;
         const displayList = postsListDataSource[this.state.currentPage - 1];
         return (
-            <div>
-                <QueueAnimate type={['right', 'left']} onEnd={window.scrollTo(0, 0)} className={styles.list}>
+            <QueueAnimate
+                type={['right', 'left']}
+                onEnd={function () {
+                    window.scrollTo(0, 0);
+                }}
+                className={styles.queueAnimate}
+            >
+                <QueueAnimate
+                    key="postsList"
+                    type={['right', 'left']}
+                    onEnd={function () {
+                        window.scrollTo(0, 0);
+                    }}
+                    className={styles.queueAnimate}
+                >
                     <div key={`page${this.state.currentPage}`}>
                         {
                             displayList.map(post => {
@@ -85,7 +98,7 @@ class PostsList extends Component {
                         }
                     </div>
                 </QueueAnimate>
-                <div className={styles.pagination}>
+                <div key="pagination" className={styles.pagination}>
                     <Pagination
                         current={this.state.currentPage}
                         total={total}
@@ -93,7 +106,7 @@ class PostsList extends Component {
                         onChange={this.handlePageChange}
                     />
                 </div>
-            </div>
+            </QueueAnimate>
         );
     }
 }

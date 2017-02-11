@@ -11,6 +11,6 @@
   @apply --pagination-on-the-right;
 }
 
-.queueAnimate{
+.queueAnimate {
   @apply --queue-animate;
 }

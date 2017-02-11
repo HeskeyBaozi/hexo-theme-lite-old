@@ -1,9 +1,5 @@
-import {
-    fetchPostFieldValue,
-    fetchPostMeta,
-    fetchPostsList
-} from '../services/posts';
-import NProgress from 'nprogress';
+import {fetchPostFieldValue, fetchPostMeta, fetchPostsList} from "../services/posts";
+import NProgress from "nprogress";
 
 export default {
     namespace: 'posts',
@@ -122,6 +118,7 @@ export default {
                 })))
             ];
             NProgress.inc();
+            yield put({type: 'initializePostsMetaComplete'});
             onComplete();
         },
         initializePostsContent: function*({payload}, {put, call, select}) {
@@ -139,6 +136,11 @@ export default {
                     payload: {contentObject: data}
                 }))
             ];
+            NProgress.done();
+        },
+        initializeArchivesPage: function*({payload, onComplete}, {put, take}) {
+            yield put({type: 'initializePostsList', onComplete});
+            yield take('initializePostsMetaComplete');
             NProgress.done();
         }
     },

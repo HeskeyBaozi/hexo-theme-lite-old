@@ -28,3 +28,7 @@
 .container {
   @apply --content-padding;
 }
+
+.queueAnimate {
+  @apply --queue-animate;
+}
