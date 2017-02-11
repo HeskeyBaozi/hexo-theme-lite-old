@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import styles from './styles.less';
+import styles from './styles.css';
 import {Row, Col, Menu, Icon, Dropdown, Layout} from 'antd';
 import {Link} from 'dva/router';
 import {pictureURL} from '../../../config/general';

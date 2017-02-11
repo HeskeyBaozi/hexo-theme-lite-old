@@ -1,0 +1,28 @@
+@import "../../../../config/global.css";
+
+:root {
+  --rotate-transition: {
+    transition: transform 1s;
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.userInfoContainer {
+  @apply --util-content-center;
+  @apply --user-information-card-height;
+  flex-flow: column nowrap;
+}
+
+.avatar {
+  @apply --user-information-avatar-size;
+  @apply --rotate-transition;
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px;
+}
+
+.title {
+  font-size: 1.3em;
+}

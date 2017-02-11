@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
-import styles from './styles.less';
-import {Layout, BackTop} from 'antd';
-import Header from './Header/Header';
-import Content from './Content/Content';
+import React, {PropTypes} from "react";
+import styles from "./styles.css";
+import {Layout, BackTop} from "antd";
+import Header from "./Header/Header";
+import Content from "./Content/Content";
 
 function MainLayout({
     children,

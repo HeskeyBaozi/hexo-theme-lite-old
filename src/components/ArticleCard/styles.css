@@ -1,0 +1,129 @@
+@import "../../config/global.css";
+
+.articleContent {
+  & p {
+    margin-bottom: var(--article-paragraph-space-height);
+    & img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      transition: all 500ms;
+      &:hover {
+        transform: scale(var(--article-img-scale));
+        box-shadow: 0 0 5px gray;
+      }
+    }
+  }
+
+  & ul {
+    @apply --article-list;
+    & li {
+      list-style: circle;
+    }
+  }
+
+  & ol {
+    @apply --article-list;
+    & li {
+      list-style: decimal;
+    }
+  }
+
+  & dl {
+    @apply --article-list;
+  }
+
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    @apply --article-head-title-h2-to-h6;
+  }
+
+  & blockquote {
+    @apply --article-blockquote;
+  }
+
+  & pre {
+    @apply --article-code;
+  }
+
+  & :global(.pullquote) {
+    width: 50%;
+  }
+
+  & :global(.right) {
+    float: right;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+
+  & :global(.left) {
+    float: left;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  & code {
+    display: inline-block;
+    @apply --article-code;
+    padding: 3px 5px;
+    margin-top: 5px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+  }
+
+  & :global(.highlight) {
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-font-color);
+    overflow-x: scroll;
+    @apply --highlight-padding;
+    @apply --highlight-margin;
+    & :global(.gutter) {
+      text-align: right;
+      padding-right: 8px;
+      border-right: 1px solid gray;
+    }
+
+    & :global(.marked) {
+      background-color: color(var(--highlight-font-color) alpha(10%));
+    }
+
+    & :global(.code) {
+      vertical-align: top;
+      padding-left: 8px;
+      @apply --highlight-color;
+    }
+
+    & figcaption > * {
+      margin: 0 5px;
+    }
+  }
+
+  & > table {
+    width: 100%;
+  }
+}
+
+.postTitle {
+  text-align: center;
+}
+
+.postMeta {
+  margin: 3px 0 30px 0;
+  text-align: center;
+}
+
+.readMore {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.eof {
+  display: block;
+  @apply --article-eof;
+  height: 0;
+  text-align: center;
+  border-bottom: 1px solid var(--primary-color);
+}

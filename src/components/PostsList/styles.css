@@ -1,0 +1,10 @@
+:root {
+  --pagination-on-the-right: {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.pagination {
+  @apply --pagination-on-the-right;
+}

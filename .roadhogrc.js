@@ -1,3 +1,8 @@
+import cssnext from "postcss-cssnext";
+import assets from "postcss-assets";
+import cssImport from "postcss-import";
+import path from "path";
+
 export default {
     entry: './src/index.js',
     outputPath: './source',
@@ -9,7 +14,16 @@ export default {
         ['import', {libraryName: 'antd', style: true}]
     ],
     extraPostCSSPlugins: [
-        require('precss')
+        cssImport(),
+        assets({
+            basePath: path.resolve('./src/assets'),
+            relative: true
+        }),
+        cssnext({
+            features: {
+                autoprefixer: false
+            }
+        })
     ],
     env: {
         development: {

@@ -1,0 +1,9 @@
+@import "../../../config/global.css";
+
+.footer {
+  @apply --util-content-center;
+  @apply --content-padding;
+  flex-flow: column nowrap;
+  height: 60px;
+  min-height: 100px;
+}

@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
-import styles from './styles.less';
+import styles from './styles.css';
 import {Pagination} from 'antd';
 import QueueAnimate from 'rc-queue-anim';
 
@@ -87,7 +87,6 @@ class PostsList extends Component {
                 </QueueAnimate>
                 <div className={styles.pagination}>
                     <Pagination
-                        simple
                         current={this.state.currentPage}
                         total={total}
                         pageSize={perPage}

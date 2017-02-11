@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react';
-import styles from './styles.less';
+import styles from './styles.css';
 import moment from 'moment';
 import {Icon, Button, Tag} from 'antd';
 import {Link} from 'dva/router';

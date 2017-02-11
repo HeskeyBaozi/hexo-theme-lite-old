@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import styles from './styles.less';
 import MainLayout from '../../components/Layout/Layout';
 import {connect} from 'dva';
 import QueueAnimate from 'rc-queue-anim';
@@ -24,7 +23,7 @@ function App({
                               window.scrollTo(0, 0)
                           }}
             >
-                <div key={location.pathname} className={styles.transition}>
+                <div key={location.pathname}>
                     {children}
                 </div>
             </QueueAnimate>

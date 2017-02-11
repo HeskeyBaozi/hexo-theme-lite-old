@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
-import styles from './styles.less';
-import {pictureURL} from '../../../../config/general';
+import React, {PropTypes} from "react";
+import styles from "./styles.css";
+import {pictureURL} from "../../../../config/general";
 
 function UserInfo({
     title,
@@ -8,14 +8,10 @@ function UserInfo({
     subtitle
 }) {
     return (
-        <div className={styles.info}>
-            <div className={styles.author}>
-                <img src={pictureURL.Avatar} alt="avatar" title={author} className={styles.avatar}/>
-            </div>
-            <div>
-                <p className={styles.title}>{title}</p>
-                <p>{subtitle}</p>
-            </div>
+        <div className={styles.userInfoContainer}>
+            <img key="avatar" src={pictureURL.Avatar} alt="avatar" title={author} className={styles.avatar}/>
+            <p key="title" className={styles.title}>{title}</p>
+            <p key="subtitle">{subtitle}</p>
         </div>
     );
 }

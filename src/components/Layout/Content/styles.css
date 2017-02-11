@@ -1,0 +1,30 @@
+@import "../../../config/global.css";
+
+:root {
+  --container-margin-top-and-bottom: {
+    margin-top: calc(16px + var(--large-header-height));
+    margin-bottom: 16px;
+    @media (--small) {
+      margin-bottom: 16px;
+      margin-top: calc(16px + var(--small-header-height));
+    }
+  }
+}
+
+.contentInner {
+  @apply --content-width;
+  @apply --filter-blur;
+  &:before {
+    @apply --user-information-card-height;
+  }
+  @apply --container-margin-top-and-bottom;
+  background-color: var(--primary-background-color);
+  border-radius: var(--content-border-radius);
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.container {
+  @apply --content-padding;
+}

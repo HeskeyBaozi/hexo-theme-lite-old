@@ -1,0 +1,51 @@
+@import "../../../config/global.css";
+
+:root {
+  --fix-on-top: {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  };
+
+  --center-content: {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  };
+}
+
+.header {
+  @apply --header-height;
+  @apply --header-line-height;
+  @apply --header-padding;
+  @apply --filter-blur;
+  @apply --fix-on-top;
+  background-color: var(--primary-background-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 25px;
+}
+
+.menu {
+  height: 100%;
+  line-height: calc(var(--large-header-height) - 1px);
+  box-sizing: border-box;
+  background-color: var(--transparent);
+  border-bottom-color: var(--transparent);
+}
+
+.heading {
+  @apply --content-width;
+}
+
+.headingSmall {
+  @apply --center-content;
+  @apply --header-height;
+  & .bars {
+    position: fixed;
+    left: 20px;
+    font-size: 1.3em;
+  }
+}
+
+

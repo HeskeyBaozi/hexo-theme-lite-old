@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'dva';
-import styles from './styles.less';
+import styles from './styles.css';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 
 function PostPage({

@@ -1,0 +1,19 @@
+@import "../../config/global.css";
+
+:root {
+  --make-fixed-target-center: {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.layout {
+  background: var(--background-image-url) 0 / cover fixed;
+  min-height: 100vh;
+}
+
+.backTop {
+  @apply --make-fixed-target-center;
+}

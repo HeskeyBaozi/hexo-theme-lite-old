@@ -1,15 +1,19 @@
-import React, {PropTypes} from 'react';
-import styles from './styles.less';
+import React, {PropTypes} from "react";
+import styles from "./styles.css";
 
-function Footer() {
+function Footer({
+    author
+}) {
     return (
         <div className={styles.footer}>
             <p>Theme: Lite</p>
-            <p>Heskey Baozi, 2017</p>
+            <p>Copy right, {author}, 2017</p>
         </div>
     );
 }
 
-Footer.propTypes = {};
+Footer.propTypes = {
+    author: PropTypes.string.isRequired
+};
 
 export default Footer;

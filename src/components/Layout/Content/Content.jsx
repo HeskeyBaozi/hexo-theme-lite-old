@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Layout} from 'antd';
-import styles from './styles.less';
+import styles from './styles.css';
 import UserInfo from './UserInfo/UserInfo';
 import Footer from '../Footer/Footer';
 import QueueAnimate from 'rc-queue-anim';
@@ -21,7 +21,7 @@ function Content({
                     {children}
                 </div>
                 <div key="footer">
-                    <Footer/>
+                    <Footer author={author}/>
                 </div>
             </QueueAnimate>
         </Layout.Content>
