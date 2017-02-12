@@ -1,9 +1,8 @@
+'use strict';
 import React, {PropTypes} from "react";
 import {connect} from "dva";
+import styles from './styles.css';
 import TimelineList from "../../components/TimelineList/TimelineList";
-
-'use strict';
-
 
 function Archives({
     postsListDataSource,
@@ -15,13 +14,15 @@ function Archives({
 }) {
 
     return (
-        <TimelineList categoriesEntities={categoriesEntities}
-                      momentFormat={momentFormat}
-                      perPage={perPage}
-                      postsListDataSource={postsListDataSource}
-                      tagsEntities={tagsEntities}
-                      total={total}
-        />
+        <div className={styles.timelistContainer}>
+            <TimelineList categoriesEntities={categoriesEntities}
+                          momentFormat={momentFormat}
+                          perPage={perPage}
+                          postsListDataSource={postsListDataSource}
+                          tagsEntities={tagsEntities}
+                          total={total}
+            />
+        </div>
     );
 }
 

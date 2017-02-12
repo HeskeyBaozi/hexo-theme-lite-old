@@ -36,6 +36,21 @@ function RouterConfig({history, app}) {
         });
     }
 
+    function requireTagsPrepared(nextState, replace, callback) {
+        app._store.dispatch({
+            type: 'tags/initializeTagsPage',
+            onComplete: callback
+        });
+    }
+
+    function requireTagDetailPrepared(nextState, replace, callback) {
+        app._store.dispatch({
+            type: 'tags/initializeTagDetail',
+            onComplete: callback,
+            payload: {tag_id: nextState.params.tag_id}
+        });
+    }
+
     const routes = [
         {
             path: '/',
@@ -47,6 +62,7 @@ function RouterConfig({history, app}) {
                     callback(null, {
                         name: 'home',
                         component: Home,
+                        menuKey: 'home',
                         onEnter: requirePostsListPrepared
                     });
                 });
@@ -55,6 +71,7 @@ function RouterConfig({history, app}) {
                 {
                     path: 'posts/:post_id',
                     name: 'post-detail',
+                    menuKey: 'home',
                     onEnter: requirePostPagePrepared,
                     getComponent: function (nextState, callback) {
                         require.ensure([], require => {
@@ -66,13 +83,45 @@ function RouterConfig({history, app}) {
                 {
                     path: 'archives',
                     name: 'archives',
+                    menuKey: 'archives',
                     onEnter: requireArchivesPrepared,
                     getComponent: function (nextState, callback) {
                         require.ensure([], require => {
                             const Archives = require('./routes/ArchivesPage/Archives');
                             callback(null, Archives);
-                        })
+                        });
                     }
+                },
+                {
+                    path: 'tags',
+                    name: 'tags',
+                    menuKey: 'tags',
+                    onEnter: requireTagsPrepared,
+                    getComponent: function (nextState, callback) {
+                        require.ensure([], require => {
+                            const Tags = require('./routes/TagsPage/TagsPage');
+                            callback(null, Tags);
+                        });
+                    },
+                    indexRoute: {
+                        name: 'tag-detail',
+                        menuKey: 'tags',
+                        component: () => <div>Index</div>
+                    },
+                    childRoutes: [
+                        {
+                            path: ':tag_id',
+                            name: 'tag-detail',
+                            menuKey: 'tags',
+                            onEnter: requireTagDetailPrepared,
+                            getComponent: function (nextState, callback) {
+                                require.ensure([], require => {
+                                    const TagDetail = require('./routes/TagDetail/TagDetail');
+                                    callback(null, TagDetail);
+                                });
+                            }
+                        }
+                    ]
                 }
             ]
         }

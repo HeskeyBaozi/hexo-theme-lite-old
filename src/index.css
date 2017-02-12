@@ -1,14 +1,18 @@
 :global(html, body, #root) {
-    font-size: 1rem;
+  font-size: 1rem;
+}
+
+:global(html) {
+  overflow-y: scroll;
 }
 
 @media (max-width: 768px) {
-    :global(html, body, #root) {
-        font-size: 0.9rem;
-    }
+  :global(html, body, #root) {
+    font-size: 0.9rem;
+  }
 }
 
 :global(div) {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 

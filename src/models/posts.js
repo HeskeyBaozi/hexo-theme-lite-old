@@ -77,10 +77,17 @@ export default {
                 });
             }
             NProgress.inc();
-            yield put({type: 'initializePostsMeta', onComplete});
+            yield put({
+                type: 'initializePostsMeta',
+                onComplete,
+                payload: {
+                    initializeList: yield select(({posts}) =>
+                        posts.list.reduce((accumulation, right) => accumulation.concat([...right])))
+                }
+            });
         },
         initializePostsMeta: function*({payload, onComplete}, {put, select, call, take}) {
-            const list = yield select(({posts}) => posts.list);
+            const {initializeList} = payload;
             const entities = yield select(({posts}) => posts.entities);
 
             // check tags
@@ -101,21 +108,21 @@ export default {
             const [
                 ...fetchPostsEntitiesResult
             ] = yield [
-                ...list.map(chunk => chunk.map(post_id => {
+                ...initializeList.map(post_id => {
                     "use strict";
                     const isExists = entities[post_id];
                     if (!isExists) {
                         return call(fetchPostMeta, {post_id});
                     }
-                }).filter(call => call))
+                }).filter(call => call)
             ];
             NProgress.inc();
 
             yield [
-                ...fetchPostsEntitiesResult.map(chunk => chunk.map(({data}) => put({
+                ...fetchPostsEntitiesResult.map(({data}) => put({
                     type: 'savePostMeta',
                     payload: {postMeta: data}
-                })))
+                }))
             ];
             NProgress.inc();
             yield put({type: 'initializePostsMetaComplete'});

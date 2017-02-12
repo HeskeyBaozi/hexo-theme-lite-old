@@ -9,7 +9,7 @@ function getLast(array) {
 }
 
 function getName(last) {
-    return last.name;
+    return last.menuKey;
 }
 
 function Header({
@@ -17,30 +17,40 @@ function Header({
 }) {
     const selectedName = getName(getLast(routes));
 
-    const menu = <Menu selectedKeys={[selectedName]}>
-        <Menu.Item key="home">
-            <Link to="/">
-                <Icon type="home"/> Home
-            </Link>
-        </Menu.Item>
-        <Menu.Item key="archives">
-            <Link to="/archives">
-                <Icon type="file-text"/> Archives
-            </Link>
-        </Menu.Item>
-        <Menu.Item key="categories">
-            <Icon type="appstore-o"/> Categories
-        </Menu.Item>
-        <Menu.Item key="tags">
-            <Icon type="tag-o"/> Tags
-        </Menu.Item>
-        <Menu.Item key="about">
-            <Icon type="heart-o"/> About
-        </Menu.Item>
-        <Menu.Item key="404">
-            <Icon type="frown-o"/> 404
-        </Menu.Item>
-    </Menu>;
+    const menu = (
+        <Menu selectedKeys={[selectedName]}>
+            <Menu.Item key="home">
+                <Link to="/">
+                    <Icon type="home"/> Home
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="archives">
+                <Link to="/archives">
+                    <Icon type="file-text"/> Archives
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="categories">
+                <Link to="categories">
+                    <Icon type="appstore-o"/> Categories
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="tags">
+                <Link to="/tags">
+                    <Icon type="tag-o"/> Tags
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="about">
+                <Link to="/about">
+                    <Icon type="heart-o"/> About
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="404">
+                <Link to="/404">
+                    <Icon type="frown-o"/> 404
+                </Link>
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <Layout.Header className={styles.header}>
@@ -59,16 +69,24 @@ function Header({
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="categories">
-                                <Icon type="appstore-o"/> Categories
+                                <Link to="categories">
+                                    <Icon type="appstore-o"/> Categories
+                                </Link>
                             </Menu.Item>
                             <Menu.Item key="tags">
-                                <Icon type="tag-o"/> Tags
+                                <Link to="/tags">
+                                    <Icon type="tag-o"/> Tags
+                                </Link>
                             </Menu.Item>
                             <Menu.Item key="about">
-                                <Icon type="heart-o"/> About
+                                <Link to="/about">
+                                    <Icon type="heart-o"/> About
+                                </Link>
                             </Menu.Item>
                             <Menu.Item key="404">
-                                <Icon type="frown-o"/> 404
+                                <Link to="/404">
+                                    <Icon type="frown-o"/> 404
+                                </Link>
                             </Menu.Item>
                         </Menu>
                     </div>

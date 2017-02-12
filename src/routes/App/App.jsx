@@ -3,14 +3,13 @@ import MainLayout from "../../components/Layout/Layout";
 import {connect} from "dva";
 import QueueAnimate from "rc-queue-anim";
 import {LocaleProvider} from "antd";
-import enUS from 'antd/lib/locale-provider/en_US';
+import enUS from "antd/lib/locale-provider/en_US";
 
 function App({
     children,
     title,
     subtitle,
     author,
-    location,
     routes
 }) {
     return (
@@ -26,7 +25,7 @@ function App({
                                   window.scrollTo(0, 0)
                               }}
                 >
-                    <div key={location.pathname}>
+                    <div key={routes[routes.length - 1].name}>
                         {children}
                     </div>
                 </QueueAnimate>
@@ -40,7 +39,6 @@ App.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-    location: PropTypes.object.isRequired,
     routes: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 

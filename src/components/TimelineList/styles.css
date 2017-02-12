@@ -14,3 +14,7 @@
 .queueAnimate {
   @apply --queue-animate;
 }
+
+.tagsGroup {
+  margin: 5px 0;
+}

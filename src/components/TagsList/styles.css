@@ -1,0 +1,14 @@
+@import "../../config/global.css";
+
+.search {
+  background-color: var(--primary-background-color);
+}
+
+.tagsList {
+  margin: 16px 0;
+  @apply --queue-animate;
+}
+
+.queueAnimate {
+  @apply --queue-animate;
+}
