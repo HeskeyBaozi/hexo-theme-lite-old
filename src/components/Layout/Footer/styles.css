@@ -1,9 +1,19 @@
 @import "../../../config/global.css";
 
+:root {
+  --fixed-on-the-end: {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
 .footer {
+  @apply --content-width;
   @apply --util-content-center;
   @apply --content-padding;
+  @apply --fixed-on-the-end;
   flex-flow: column nowrap;
-  height: 60px;
-  min-height: 100px;
+  height: var(--footer-height);
 }

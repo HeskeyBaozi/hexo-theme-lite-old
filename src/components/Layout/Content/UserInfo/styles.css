@@ -10,9 +10,23 @@
 }
 
 .userInfoContainer {
+  @apply --content-width;
   @apply --util-content-center;
   @apply --user-information-card-height;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  transition: height 500ms;
+  transition-delay: var(--user-information-animate-delay);
+}
+
+.simpleUserInfoContainer {
+  @apply --user-simple-information-card-height;
+  flex-flow: row nowrap;
+}
+
+.avatarWrap {
+  width: 100%;
 }
 
 .avatar {
@@ -21,8 +35,29 @@
   display: block;
   margin: 0 auto;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px;
+  transition: all 500ms;
+}
+
+.simpleAvatar {
+  @apply --user-simple-information-avatar-size;
+}
+
+.blogInformation {
+  text-align: center;
+  width: 100%;
+  transition: all 100ms var(--user-information-animate-delay);
+  opacity: 1;
+}
+
+.simpleBlogInformation {
+  opacity: 0;
+  display: none;
 }
 
 .title {
   font-size: 1.3em;
+}
+
+.queueAnimate {
+  @apply --queue-animate;
 }

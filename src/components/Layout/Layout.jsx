@@ -11,10 +11,17 @@ function MainLayout({
     author,
     routes
 }) {
+    const simpleUserInfo = routes[routes.length - 1].name !== 'home';
+
     return (
         <Layout className={styles.layout}>
             <Header routes={routes}/>
-            <Content title={title} subtitle={subtitle} author={author}>
+            <Content title={title}
+                     subtitle={subtitle}
+                     author={author}
+                     simpleUserInfo={simpleUserInfo}
+                     routes={routes}
+            >
                 {children}
             </Content>
             <BackTop className={styles.backTop}/>

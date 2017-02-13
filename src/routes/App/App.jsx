@@ -3,6 +3,7 @@ import MainLayout from "../../components/Layout/Layout";
 import {connect} from "dva";
 import QueueAnimate from "rc-queue-anim";
 import {LocaleProvider} from "antd";
+import styles from "./styles.css";
 import enUS from "antd/lib/locale-provider/en_US";
 
 function App({
@@ -20,18 +21,10 @@ function App({
                 author={author}
                 routes={routes}
             >
-                <QueueAnimate type={['right', 'left']}
-                              onEnd={function () {
-                                  window.scrollTo(0, 0)
-                              }}
-                >
-                    <div key={routes[routes.length - 1].name}>
-                        {children}
-                    </div>
-                </QueueAnimate>
+                {children}
             </MainLayout>
         </LocaleProvider>
-    )
+    );
 }
 
 App.propTypes = {
@@ -39,7 +32,8 @@ App.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-    routes: PropTypes.arrayOf(PropTypes.object).isRequired
+    routes: PropTypes.arrayOf(PropTypes.object).isRequired,
+    params: PropTypes.object.isRequired,
 };
 
 function mapStateToProp(state, ownProps) {

@@ -1,1 +1,25 @@
-{"ciyubgbfu0003l81s808ugobm":{"name":"Foo","category_id":"ciyubgbfu0003l81s808ugobm","posts":["ciyubgbfi0000l81sjk8kaqun"]},"ciyubgbg90008l81sky1zn7jf":{"name":"Bar","parent":"ciyubgbfu0003l81s808ugobm","category_id":"ciyubgbg90008l81sky1zn7jf","posts":["ciyubgbfi0000l81sjk8kaqun"]},"ciyubgbgg000cl81sz2qfo9wm":{"name":"Baz","parent":"ciyubgbg90008l81sky1zn7jf","category_id":"ciyubgbgg000cl81sz2qfo9wm","posts":["ciyubgbfi0000l81sjk8kaqun"]}}
+{
+    "ciyubgbfu0003l81s808ugobm": {
+        "name": "Foo",
+        "category_id": "ciyubgbfu0003l81s808ugobm",
+        "posts": [
+            "ciyubgbfi0000l81sjk8kaqun"
+        ]
+    },
+    "ciyubgbg90008l81sky1zn7jf": {
+        "name": "Bar",
+        "parent": "ciyubgbfu0003l81s808ugobm",
+        "category_id": "ciyubgbg90008l81sky1zn7jf",
+        "posts": [
+            "ciyubgbfi0000l81sjk8kaqun"
+        ]
+    },
+    "ciyubgbgg000cl81sz2qfo9wm": {
+        "name": "Baz",
+        "parent": "ciyubgbg90008l81sky1zn7jf",
+        "category_id": "ciyubgbgg000cl81sz2qfo9wm",
+        "posts": [
+            "ciyubgbfi0000l81sjk8kaqun"
+        ]
+    }
+}

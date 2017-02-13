@@ -14,21 +14,24 @@
 .contentInner {
   @apply --content-width;
   @apply --filter-blur;
+
   &:before {
-    @apply --user-information-card-height;
+    @apply --user-simple-information-card-height;
   }
   @apply --container-margin-top-and-bottom;
   background-color: var(--primary-background-color);
   border-radius: var(--content-border-radius);
 
   display: flex;
-  flex-flow: column nowrap;
-  overflow-y: hidden;
-  overflow-x: visible;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .container {
+  @apply --content-width;
   @apply --content-padding;
+  margin-bottom: var(--footer-height);
 }
 
 .queueAnimate {

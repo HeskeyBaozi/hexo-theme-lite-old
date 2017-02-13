@@ -27,13 +27,13 @@ class TimelineList extends Component {
         const result = {};
         currentList.forEach(post => {
             const year = new Date(post.date).getFullYear();
-            if (result[year]) {
+            if (Array.isArray(result[year])) {
                 result[year].push(post);
             } else {
-                result[year] = [];
+                result[year] = [post];
             }
         });
-        return Object.keys(result).sort((left, right) => left - right).map(year => ({
+        return Object.keys(result).map(year => ({
             year,
             posts: result[year]
         }));

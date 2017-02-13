@@ -122,6 +122,18 @@ function RouterConfig({history, app}) {
                             }
                         }
                     ]
+                },
+                {
+                    path: 'categories',
+                    name: 'categories',
+                    menuKey: 'categories',
+                    //onEnter: requireTagsPrepared,
+                    getComponent: function (nextState, callback) {
+                        require.ensure([], require => {
+                            const Categories = require('./routes/CategoriesPage/CategoriesPage');
+                            callback(null, Categories);
+                        });
+                    },
                 }
             ]
         }

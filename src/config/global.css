@@ -87,19 +87,37 @@
   };
 
   --user-information-card-height: {
-    height: 200px;
+    height: 160px;
     @media (--small) {
-      height: 150px;
+      height: 140px;
+    }
+  };
+
+  --user-simple-information-card-height: {
+    height: 100px;
+    @media (--small) {
+      height: 80px;
     }
   };
 
   --user-information-avatar-size: {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  };
+
+  --user-simple-information-avatar-size: {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
   };
 
   --content-border-radius: 5px;
+
+  /**
+   * Footer
+   */
+  --footer-height: 100px;
 
   /**
    * Code Highlight
@@ -188,7 +206,8 @@
     & :global(.queue-anim-leaving) {
       @apply --queue-animate-leaving;
     }
-  }
+  };
+  --user-information-animate-delay: 500ms;
 }
 
 

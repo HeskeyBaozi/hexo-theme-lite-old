@@ -1,8 +1,5 @@
-import {
-    fetchPostMeta,
-    fetchPostFieldValue
-} from '../services/posts';
-import NProgress from 'nprogress';
+import {fetchPostMeta, fetchPostFieldValue} from "../services/posts";
+import NProgress from "nprogress";
 
 export default {
     namespace: 'post_detail',
@@ -30,12 +27,23 @@ export default {
                     content
                 }
             };
+        },
+        clearPostContent: function (state, {payload}) {
+            return {
+                ...state,
+                currentPost: {}
+            };
         }
     },
     effects: {
         initializePostPage: function*({payload, onComplete}, {put, select, take}) {
             NProgress.start();
             const {post_id} = payload;
+
+            // clear
+            yield put({
+                type: 'clearPostContent'
+            });
 
             // check post meta
             const postEntity = yield select(({posts}) => posts.entities[post_id]);
@@ -70,13 +78,10 @@ export default {
             onComplete();
 
             // check post content
-            const hasContent = yield select(({post_detail}) => post_detail.currentPost.content);
-            if (!hasContent) {
-                yield put({
-                    type: 'initializePostContent',
-                    payload: {post_id}
-                });
-            }
+            yield put({
+                type: 'initializePostContent',
+                payload: {post_id}
+            });
             NProgress.done();
         },
         initializePostMeta: function*({payload}, {put, call}) {
