@@ -3,22 +3,40 @@
 import React, {PropTypes} from "react";
 import {connect} from "dva";
 import SearchTree from "../../components/SearchTree/SearchTree";
+import QueueAnimate from "rc-queue-anim";
+import styles from "./styles.css";
 
 function Categories({
     flattenList,
-    treeDataSource
+    treeDataSource,
+    children,
+    location
 }) {
-    return <SearchTree keyAttribute={'category_id'}
-                       textAttribute={'name'}
-                       getParentKey={(itemKey, item) => item.parent}
-                       flatten={flattenList}
-                       treeDataSource={treeDataSource}
-    />;
+    return (
+        <div>
+            <SearchTree keyAttribute={'category_id'}
+                        textAttribute={'name'}
+                        getParentKey={(itemKey, item) => item.parent}
+                        flatten={flattenList}
+                        treeDataSource={treeDataSource}
+                        onSelect={function (selectedKeys, {selected, selectedNodes, node, event}) {
+                            console.log(arguments);
+                        }}
+            />
+            <QueueAnimate type={['right', 'left']} className={styles.queueAnimate}>
+                <div key={location.pathname}>
+                    {children}
+                </div>
+            </QueueAnimate>
+        </div>
+    );
 }
 
 Categories.propTypes = {
     flattenList: PropTypes.arrayOf(PropTypes.object).isRequired,
-    treeDataSource: PropTypes.arrayOf(PropTypes.object).isRequired
+    treeDataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+    children: PropTypes.element.isRequired,
+    location: PropTypes.object.isRequired
 };
 
 

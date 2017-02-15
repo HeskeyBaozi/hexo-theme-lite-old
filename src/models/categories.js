@@ -2,7 +2,7 @@ import {
     fetchCategoriesEntities,
     fetchCategoriesList
 } from '../services/catagories';
-
+import NProgress from 'nprogress';
 
 export default {
     namespace: 'categories',
@@ -45,6 +45,19 @@ export default {
                     payload: {categoriesList}
                 })
             ];
+        },
+        initializeCategoriesPage:function* ({payload, onComplete}, {put, take, select}) {
+            NProgress.start();
+
+            // check categories
+            const isCategoriesPrepared = yield select(({categories}) => categories.categoriesList.length);
+            if (!isCategoriesPrepared) {
+                yield put({type: 'initializeCategories'});
+                yield take('categories/saveCategoriesEntities');
+            }
+
+            onComplete();
+            NProgress.done();
         }
     },
     subscriptions: {},

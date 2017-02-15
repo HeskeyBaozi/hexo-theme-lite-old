@@ -51,6 +51,13 @@ function RouterConfig({history, app}) {
         });
     }
 
+    function requireCategoriesPrepared(nextState, replace, callback) {
+        app._store.dispatch({
+            type: 'categories/initializeCategoriesPage',
+            onComplete: callback
+        });
+    }
+
     const routes = [
         {
             path: '/',
@@ -127,12 +134,17 @@ function RouterConfig({history, app}) {
                     path: 'categories',
                     name: 'categories',
                     menuKey: 'categories',
-                    //onEnter: requireTagsPrepared,
+                    onEnter: requireCategoriesPrepared,
                     getComponent: function (nextState, callback) {
                         require.ensure([], require => {
                             const Categories = require('./routes/CategoriesPage/CategoriesPage');
                             callback(null, Categories);
                         });
+                    },
+                    indexRoute: {
+                        name: 'category-detail',
+                        menuKey: 'categories',
+                        component: () => <div>Index</div>
                     },
                 }
             ]
