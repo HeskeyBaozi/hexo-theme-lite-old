@@ -94,7 +94,8 @@
   };
 
   --user-simple-information-card-height: {
-    height: 100px;
+    margin-top: 16px;
+    height: 90px;
     @media (--small) {
       height: 80px;
     }
@@ -107,9 +108,7 @@
   };
 
   --user-simple-information-avatar-size: {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    @apply --user-information-avatar-size;
   };
 
   --content-border-radius: 5px;
@@ -183,6 +182,16 @@
     margin: 20px auto 40px;
     width: 20%;
   };
+  /**
+   * Router
+   */
+  --page-leading-font-size: 2em;
+  --page-leading: {
+    text-align: center;
+    font-size: var(--page-leading-font-size);
+    margin-bottom: 16px;
+  };
+  --page-base-font-size: 1rem;
 
   /**
    * Util

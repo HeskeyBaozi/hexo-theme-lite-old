@@ -30,5 +30,5 @@ export default {
             extraBabelPlugins: ['dva-hmr']
         }
     },
-    theme: './src/config/antd.js'
+    theme: './src/config/modifyVars'
 }

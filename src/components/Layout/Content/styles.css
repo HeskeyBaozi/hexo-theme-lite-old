@@ -26,6 +26,7 @@
   align-content: flex-start;
   flex-wrap: wrap;
   overflow: hidden;
+  font-size: var(--page-base-font-size);
 }
 
 .container {

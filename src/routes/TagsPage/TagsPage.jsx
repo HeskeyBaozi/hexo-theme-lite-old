@@ -12,6 +12,7 @@ function Tags({
 }) {
     return (
         <div>
+            <p className={styles.leading}>Tags</p>
             <TagsList tagsDataSource={tagsDataSource}/>
             <QueueAnimate type={['right', 'left']} className={styles.queueAnimate}>
                 <div key={location.pathname}>

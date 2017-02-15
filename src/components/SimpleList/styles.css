@@ -1,0 +1,19 @@
+@import '../../config/global.css';
+
+.routerView {
+  @apply --queue-animate;
+  font-size: 1rem;
+}
+
+.queueAnimate {
+  @apply --queue-animate;
+}
+
+.pagination {
+  margin-top: var(--large-header-height);
+  @apply --util-content-center;
+}
+
+.year {
+  font-size: 2em;
+}

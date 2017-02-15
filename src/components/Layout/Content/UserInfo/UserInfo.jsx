@@ -1,6 +1,6 @@
 import React, {PropTypes} from "react";
 import styles from "./styles.css";
-import {pictureURL} from "../../../../config/general";
+import {pictureURL} from "../../../../config/static";
 
 function UserInfo({
     title,

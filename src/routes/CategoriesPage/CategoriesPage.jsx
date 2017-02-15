@@ -14,6 +14,7 @@ function Categories({
 }) {
     return (
         <div>
+            <p className={styles.leading}>Categories</p>
             <SearchTree keyAttribute={'category_id'}
                         textAttribute={'name'}
                         getParentKey={(itemKey, item) => item.parent}

@@ -71,7 +71,7 @@ class SearchTree extends Component {
         });
         return (
             <div>
-                <Input.Search placeholder="Search Categories" onChange={this.onSearchChange}/>
+                <Input.Search placeholder="Search Categories" size="large" onChange={this.onSearchChange}/>
                 <Tree
                     onExpand={this.onExpand}
                     expandedKeys={expandedKeys}

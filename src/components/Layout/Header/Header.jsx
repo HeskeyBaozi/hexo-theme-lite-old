@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import styles from './styles.css';
 import {Row, Col, Menu, Icon, Dropdown, Layout} from 'antd';
 import {Link} from 'dva/router';
-import {pictureURL} from '../../../config/general';
+import {pictureURL} from '../../../config/static';
 
 function getLast(array) {
     return array[array.length - 1];

@@ -3,3 +3,7 @@
 .queueAnimate {
   @apply  --queue-animate;
 }
+
+.leading {
+  @apply --page-leading;
+}

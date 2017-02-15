@@ -1,4 +1,21 @@
-.timelistContainer {
-  width: 80%;
-  margin: 0 auto;
+@import "../../config/global.css";
+
+.item {
+}
+
+.itemTime {
+}
+
+.itemTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.archivesContainer {
+  margin: 0 var(--content-padding-value-large);
+}
+
+.leading {
+  @apply --page-leading;
 }
