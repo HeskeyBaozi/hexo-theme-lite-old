@@ -93,7 +93,7 @@ function getPhotos({photos}) {
 }
 
 function getExcerpt({excerpt}) {
-    return (<div key="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}/>);
+    return (<div key="excerpt" className={styles.articleContent} dangerouslySetInnerHTML={{__html: excerpt}}/>);
 }
 
 function getReadMore({post_id}) {

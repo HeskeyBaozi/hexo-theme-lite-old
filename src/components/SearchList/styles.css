@@ -7,6 +7,9 @@
 .tagsList {
   margin: 16px 0;
   @apply --queue-animate;
+  & > * {
+    margin: 5px;
+  }
 }
 
 .queueAnimate {

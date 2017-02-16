@@ -30,7 +30,7 @@ function Header({
                 </Link>
             </Menu.Item>
             <Menu.Item key="categories">
-                <Link to="categories">
+                <Link to="/categories">
                     <Icon type="appstore-o"/> Categories
                 </Link>
             </Menu.Item>
@@ -69,7 +69,7 @@ function Header({
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="categories">
-                                <Link to="categories">
+                                <Link to="/categories">
                                     <Icon type="appstore-o"/> Categories
                                 </Link>
                             </Menu.Item>

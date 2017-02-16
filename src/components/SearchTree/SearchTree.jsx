@@ -20,17 +20,26 @@ function generateFlattenList(tree) {
 }
 
 class SearchTree extends Component {
-    state = {
-        expandedKeys: [],
-        searchValue: '',
-        autoExpandParent: true
-    };
+    constructor(props){
+        super(props);
+        const {flatten, treeDataSource, keyAttribute, textAttribute, getParentKey} = this.props;
+        const flattenList = flatten || generateFlattenList(treeDataSource);
+        const expandedKeys = flattenList
+            .map(item => getParentKey(item[keyAttribute], item, treeDataSource))
+            .filter((item, index, self) => item && self.indexOf(item) === index);
+        this.state = {
+            expandedKeys,
+            searchValue: '',
+            autoExpandParent: true,
+            flattenList
+        };
+    }
 
 
     onSearchChange = e => {
         const newSearchValue = e.target.value;
         const {flatten, treeDataSource, keyAttribute, textAttribute, getParentKey} = this.props;
-        const flattenList = flatten || generateFlattenList(treeDataSource);
+        const flattenList = this.state.flattenList;
         const expandedKeys = flattenList.map(item => {
             return item[textAttribute].search(newSearchValue) > -1
                 ? getParentKey(item[keyAttribute], item, treeDataSource) : null;
@@ -76,7 +85,6 @@ class SearchTree extends Component {
                     onExpand={this.onExpand}
                     expandedKeys={expandedKeys}
                     autoExpandParent={autoExpandParent}
-                    defaultExpandAll={true}
                     onSelect={onSelect}
                 >
                     {loop(treeDataSource)}

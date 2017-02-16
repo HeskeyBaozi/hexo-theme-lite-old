@@ -126,6 +126,10 @@
       color: #83c1d1;
     }
 
+    & :global(.literal) {
+      color: #83c1d1;
+    }
+
     & :global(.string) {
       color: #e6db74;
     }
@@ -141,9 +145,24 @@
     & :global(.built_in) {
       color: #a6e22e;
     }
+
+    & :global(.comment) {
+      color: color(var(--highlight-font-color) alpha(0.6));
+    }
+
+    & :global(.attr) {
+      color: #fb9a9f;
+    }
   };
   --highlight-padding: {
     padding: 10px 20px;
+  };
+  --highlight-code: {
+    word-break: break-all;
+    background: color(var(--primary-color) alpha(0.15));
+    border-radius: 3px;
+    text-shadow: 0 1px color(var(--primary-background-color) alpha(0.6));
+    padding: 0 0.3em;
   };
   --highlight-margin: {
     margin-left: calc(0 - var(--content-padding-value-large));
@@ -153,6 +172,7 @@
       margin-right: calc(0 - var(--content-padding-value-small));
     }
   };
+  --highlight-font-size: calc(1rem * 0.9);
 
   /**
    * Article
@@ -182,6 +202,7 @@
     margin: 20px auto 40px;
     width: 20%;
   };
+
   /**
    * Router
    */
@@ -192,6 +213,11 @@
     margin-bottom: 16px;
   };
   --page-base-font-size: 1rem;
+  --page-list-item-title: {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: italic;
+  };
 
   /**
    * Util

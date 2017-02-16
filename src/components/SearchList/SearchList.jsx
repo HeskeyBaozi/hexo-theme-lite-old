@@ -1,17 +1,12 @@
 'use strict';
 import React, {PropTypes, Component} from "react";
-import {Input, Tag} from "antd";
+import {Input} from "antd";
 import styles from "./styles.css";
-import {Link} from 'dva/router';
-import QueueAnimate from "rc-queue-anim";
 
-class TagsList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            keyword: ''
-        };
-    }
+class SearchList extends Component {
+    state = {
+        keyword: ''
+    };
 
     handleSearch = value => {
         this.setState({
@@ -27,7 +22,8 @@ class TagsList extends Component {
 
     render() {
         const {
-            tagsDataSource
+            tagsDataSource,
+            itemRenderer
         } = this.props;
         const {
             keyword
@@ -36,10 +32,10 @@ class TagsList extends Component {
         const keywordRegExp = new RegExp(keyword, 'i');
         const displayTag = tagsDataSource
             .filter(({name}) => keyword === '' || keywordRegExp.test(name))
-            .map(({tag_id, name}) => <Tag key={tag_id}><Link to={`/tags/${tag_id}`}>{name}</Link></Tag>);
+            .map(item => itemRenderer(item));
 
         return (
-            <QueueAnimate type={['right', 'left']} className={styles.queueAnimate}>
+            <div>
                 <Input.Search key="search"
                               placeholder="Search Tags"
                               size="large"
@@ -53,13 +49,14 @@ class TagsList extends Component {
                         displayTag
                     }
                 </div>
-            </QueueAnimate>
+            </div>
         );
     }
 }
 
-TagsList.propTypes = {
-    tagsDataSource: PropTypes.arrayOf(PropTypes.object).isRequired
+SearchList.propTypes = {
+    tagsDataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+    itemRenderer: PropTypes.func.isRequired
 };
 
-export default TagsList;
+export default SearchList;

@@ -7,9 +7,7 @@
 }
 
 .itemTitle {
-  font-size: 1.2em;
-  font-weight: bold;
-  font-style: italic;
+  @apply --page-list-item-title;
 }
 
 .archivesContainer {

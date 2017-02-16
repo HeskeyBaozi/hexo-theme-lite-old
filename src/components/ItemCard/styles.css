@@ -1,0 +1,10 @@
+@import "../../config/global.css";
+
+.itemLeading {
+  @apply --page-leading;
+  font-size: calc(var(--page-leading-font-size) * 0.7);
+}
+
+.itemTitle {
+  @apply --page-list-item-title;
+}

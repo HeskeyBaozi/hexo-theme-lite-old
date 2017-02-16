@@ -1,9 +1,9 @@
-import dva from 'dva';
-import createLoading from 'dva-loading';
-import './index.html';
-import './index.css';
-import 'nprogress/nprogress.css';
-import './config/nprogress.css';
+import dva from "dva";
+import createLoading from "dva-loading";
+import "./index.html";
+import "./index.css";
+import "nprogress/nprogress.css";
+import "./config/nprogress.css";
 
 
 // 1. Initialize

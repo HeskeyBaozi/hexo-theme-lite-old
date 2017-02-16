@@ -2,14 +2,21 @@
 
 import React, {PropTypes} from "react";
 import {connect} from "dva";
+import {routerRedux} from "dva/router";
 import SearchTree from "../../components/SearchTree/SearchTree";
-import QueueAnimate from "rc-queue-anim";
 import styles from "./styles.css";
+import QueueAnimate from "rc-queue-anim";
+
+const a = {
+    hello:'world',
+    fuck:true,
+};
 
 function Categories({
     flattenList,
     treeDataSource,
     children,
+    dispatch,
     location
 }) {
     return (
@@ -21,13 +28,13 @@ function Categories({
                         flatten={flattenList}
                         treeDataSource={treeDataSource}
                         onSelect={function (selectedKeys, {selected, selectedNodes, node, event}) {
-                            console.log(arguments);
+                            const selectedId = selectedKeys[0];
+                            console.log('onselect');
+                            dispatch(routerRedux.push(`/categories/${selectedId}`));
                         }}
             />
             <QueueAnimate type={['right', 'left']} className={styles.queueAnimate}>
-                <div key={location.pathname}>
-                    {children}
-                </div>
+                {React.cloneElement(children || <div/>, {key: location.pathname})}
             </QueueAnimate>
         </div>
     );
@@ -36,8 +43,9 @@ function Categories({
 Categories.propTypes = {
     flattenList: PropTypes.arrayOf(PropTypes.object).isRequired,
     treeDataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
-    children: PropTypes.element.isRequired,
-    location: PropTypes.object.isRequired
+    children: PropTypes.element,
+    location: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired
 };
 
 

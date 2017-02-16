@@ -14,6 +14,7 @@ function Content({
     simpleUserInfo,
     routes
 }) {
+    console.log('pagekey', routes[routes.length - 1].name);
     return (
         <Layout.Content className={styles.contentInner}>
             <UserInfo author={author} subtitle={subtitle} title={title} simple={simpleUserInfo}/>
@@ -23,9 +24,7 @@ function Content({
                           }}
                           className={styles.queueAnimate + ' ' + styles.container}
             >
-                <div key={routes[routes.length - 1].name}>
-                    {children}
-                </div>
+                {React.cloneElement(children || <div>NONE</div>, {key: routes[routes.length - 1].name})}
             </QueueAnimate>
             <Footer author={author}/>
         </Layout.Content>

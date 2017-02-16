@@ -1,8 +1,5 @@
-import {
-    fetchCategoriesEntities,
-    fetchCategoriesList
-} from '../services/catagories';
-import NProgress from 'nprogress';
+import {fetchCategoriesEntities, fetchCategoriesList} from "../services/catagories";
+import NProgress from "nprogress";
 
 export default {
     namespace: 'categories',
@@ -46,7 +43,7 @@ export default {
                 })
             ];
         },
-        initializeCategoriesPage:function* ({payload, onComplete}, {put, take, select}) {
+        initializeCategoriesPage: function*({payload, onComplete}, {put, take, select}) {
             NProgress.start();
 
             // check categories
@@ -56,6 +53,29 @@ export default {
                 yield take('categories/saveCategoriesEntities');
             }
 
+            onComplete();
+            NProgress.done();
+        },
+        initializeCategoryDetail: function*({payload, onComplete}, {put, select, take}) {
+            NProgress.start();
+            const {category_id} = payload;
+            const item = yield select(({categories}) => categories.categoriesEntities[category_id]);
+            const postsEntities = yield select(({posts}) => posts.entities);
+
+            // check post entity
+            const allPostsMetaPrepared = item.posts.every(post_id => postsEntities[post_id]);
+            if (!allPostsMetaPrepared) {
+                yield put({
+                    type: 'posts/initializePostsMeta',
+                    onComplete,
+                    payload: {
+                        initializeList: item.posts
+                    }
+                });
+                yield take('initializePostsMetaComplete');
+            } else {
+
+            }
             onComplete();
             NProgress.done();
         }

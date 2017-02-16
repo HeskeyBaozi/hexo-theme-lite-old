@@ -15,6 +15,10 @@
     }
   }
 
+  & a {
+    text-decoration: underline;
+  }
+
   & ul {
     @apply --article-list;
     & li {
@@ -33,6 +37,7 @@
     @apply --article-list;
   }
 
+  & h1,
   & h2,
   & h3,
   & h4,
@@ -68,16 +73,15 @@
   & code {
     display: inline-block;
     @apply --article-code;
-    padding: 3px 5px;
-    margin-top: 5px;
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
+    @apply --highlight-code;
+    font-size: var(--highlight-font-size);
   }
 
   & :global(.highlight) {
     background-color: var(--highlight-background-color);
     color: var(--highlight-font-color);
     overflow-x: scroll;
+    font-size: var(--highlight-font-size);
     @apply --highlight-padding;
     @apply --highlight-margin;
     & :global(.gutter) {

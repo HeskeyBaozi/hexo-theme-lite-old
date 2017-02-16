@@ -58,6 +58,14 @@ function RouterConfig({history, app}) {
         });
     }
 
+    function requireCategoryDetailPrepared(nextState, replace, callback) {
+        app._store.dispatch({
+            type: 'categories/initializeCategoryDetail',
+            onComplete: callback,
+            payload: {category_id: nextState.params.category_id}
+        });
+    }
+
     const routes = [
         {
             path: '/',
@@ -110,20 +118,15 @@ function RouterConfig({history, app}) {
                             callback(null, Tags);
                         });
                     },
-                    indexRoute: {
-                        name: 'tag-detail',
-                        menuKey: 'tags',
-                        component: () => <div>Index</div>
-                    },
                     childRoutes: [
                         {
                             path: ':tag_id',
-                            name: 'tag-detail',
+                            name: 'tags',
                             menuKey: 'tags',
                             onEnter: requireTagDetailPrepared,
                             getComponent: function (nextState, callback) {
                                 require.ensure([], require => {
-                                    const TagDetail = require('./routes/TagDetail/TagDetail');
+                                    const TagDetail = require('./routes/ItemDetailPage/ItemDetail');
                                     callback(null, TagDetail);
                                 });
                             }
@@ -141,11 +144,20 @@ function RouterConfig({history, app}) {
                             callback(null, Categories);
                         });
                     },
-                    indexRoute: {
-                        name: 'category-detail',
-                        menuKey: 'categories',
-                        component: () => <div>Index</div>
-                    },
+                    childRoutes: [
+                        {
+                            path: ':category_id',
+                            name: 'categories',
+                            menuKey: 'categories',
+                            onEnter: requireCategoryDetailPrepared,
+                            getComponent: function (nextState, callback) {
+                                require.ensure([], require => {
+                                    const CategoryDetail = require('./routes/ItemDetailPage/ItemDetail');
+                                    callback(null, CategoryDetail);
+                                });
+                            }
+                        }
+                    ]
                 }
             ]
         }
