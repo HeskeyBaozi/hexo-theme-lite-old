@@ -2,7 +2,6 @@ import React, {PropTypes} from "react";
 import {Layout} from "antd";
 import styles from "./styles.css";
 import UserInfo from "./UserInfo/UserInfo";
-import Footer from "../Footer/Footer";
 import QueueAnimate from "rc-queue-anim";
 'use strict';
 
@@ -26,7 +25,6 @@ function Content({
             >
                 {React.cloneElement(children || <div>NONE</div>, {key: routes[routes.length - 1].name})}
             </QueueAnimate>
-            <Footer author={author}/>
         </Layout.Content>
     );
 }

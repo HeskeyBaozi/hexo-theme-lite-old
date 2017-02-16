@@ -13,6 +13,7 @@
   @apply --content-width;
   @apply --util-content-center;
   @apply --user-information-card-height;
+  @apply --filter-blur;
   flex-flow: row wrap;
   justify-content: center;
   align-content: center;
@@ -22,7 +23,6 @@
 
 .simpleUserInfoContainer {
   @apply --user-simple-information-card-height;
-  flex-flow: row nowrap;
 }
 
 .avatarWrap {

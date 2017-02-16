@@ -1,0 +1,46 @@
+@import "../../config/global.css";
+
+.item {
+
+}
+
+.itemTitle {
+  @apply --page-list-item-title;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.listGroup {
+  font-size: .8em;
+
+  & > * {
+    margin: 0 3px;
+    font-style: italic;
+  }
+}
+
+.metaSection {
+  text-align: center;
+}
+
+.excerpt {
+  @apply --article-content;
+  margin: var(--border-margin) 0;
+}
+
+.itemTime {
+
+}
+
+.eofWrap {
+  text-align: center;
+}
+
+.eof {
+  display: inline-block;
+  padding-bottom: calc(var(--border-margin) / 2);
+  margin-bottom: var(--border-margin);
+  width: 15%;
+  text-align: center;
+  border-bottom: 1px solid color(var(--primary-color) alpha(.5));
+}

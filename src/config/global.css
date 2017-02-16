@@ -66,6 +66,7 @@
   /**
    * Content
    */
+  --border-margin: 16px;
   --content-width: {
     margin-left: auto;
     margin-right: auto;
@@ -87,9 +88,9 @@
   };
 
   --user-information-card-height: {
-    height: 160px;
+    height: 500px;
     @media (--small) {
-      height: 140px;
+      height: 400px;
     }
   };
 
@@ -203,6 +204,116 @@
     width: 20%;
   };
 
+  --article-content: {
+    & p {
+      margin-bottom: var(--article-paragraph-space-height);
+      & img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        transition: all 500ms;
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 5px gray;
+        }
+      }
+    }
+
+    & a {
+      text-decoration: underline;
+    }
+
+    & ul {
+      @apply --article-list;
+      & li {
+        list-style: circle;
+      }
+    }
+
+    & ol {
+      @apply --article-list;
+      & li {
+        list-style: decimal;
+      }
+    }
+
+    & dl {
+      @apply --article-list;
+    }
+
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+      @apply --article-head-title-h2-to-h6;
+    }
+
+    & blockquote {
+      @apply --article-blockquote;
+    }
+
+    & pre {
+      @apply --article-code;
+    }
+
+    & :global(.pullquote) {
+      width: 50%;
+    }
+
+    & :global(.right) {
+      float: right;
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+
+    & :global(.left) {
+      float: left;
+      margin-left: 5px;
+      margin-right: 10px;
+    }
+
+    & code {
+      display: inline-block;
+      @apply --article-code;
+      @apply --highlight-code;
+      font-size: var(--highlight-font-size);
+    }
+
+    & :global(.highlight) {
+      background-color: var(--highlight-background-color);
+      color: var(--highlight-font-color);
+      overflow-x: scroll;
+      font-size: var(--highlight-font-size);
+      @apply --highlight-padding;
+      @apply --highlight-margin;
+      & :global(.gutter) {
+        text-align: right;
+        padding-right: 8px;
+        border-right: 1px solid gray;
+      }
+
+      & :global(.marked) {
+        background-color: color(var(--highlight-font-color) alpha(10%));
+      }
+
+      & :global(.code) {
+        vertical-align: top;
+        padding-left: 8px;
+        @apply --highlight-color;
+      }
+
+      & figcaption > * {
+        margin: 0 5px;
+      }
+    }
+
+    & > table {
+      width: 100%;
+    }
+  };
+
   /**
    * Router
    */
@@ -215,8 +326,6 @@
   --page-base-font-size: 1rem;
   --page-list-item-title: {
     font-size: 1.2em;
-    font-weight: bold;
-    font-style: italic;
   };
 
   /**

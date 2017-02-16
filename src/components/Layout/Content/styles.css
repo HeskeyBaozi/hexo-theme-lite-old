@@ -2,25 +2,23 @@
 
 :root {
   --container-margin-top-and-bottom: {
-    margin-top: calc(16px + var(--large-header-height));
-    margin-bottom: 16px;
+    margin-top: calc(var(--border-margin) + var(--large-header-height));
+    margin-bottom: var(--border-margin);
     @media (--small) {
-      margin-bottom: 16px;
-      margin-top: calc(16px + var(--small-header-height));
+      margin-bottom: var(--border-margin);
+      margin-top: calc(var(--border-margin) + var(--small-header-height));
     }
   }
 }
 
 .contentInner {
   @apply --content-width;
-  @apply --filter-blur;
 
-  &:before {
-    @apply --user-simple-information-card-height;
-  }
   @apply --container-margin-top-and-bottom;
+  margin-bottom: 0;
   background-color: var(--primary-background-color);
-  border-radius: var(--content-border-radius);
+  border-top-left-radius: var(--content-border-radius);
+  border-top-right-radius: var(--content-border-radius);
 
   display: flex;
   align-content: flex-start;
@@ -32,7 +30,6 @@
 .container {
   @apply --content-width;
   @apply --content-padding;
-  margin-bottom: var(--footer-height);
 }
 
 .queueAnimate {

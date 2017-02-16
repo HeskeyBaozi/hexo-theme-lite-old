@@ -127,6 +127,7 @@ export default {
             NProgress.inc();
             yield put({type: 'initializePostsMetaComplete'});
             onComplete();
+            NProgress.done();
         },
         initializePostsContent: function*({payload}, {put, call, select}) {
             const {postIdArray} = payload;

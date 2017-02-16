@@ -13,7 +13,11 @@
   @apply --content-width;
   @apply --util-content-center;
   @apply --content-padding;
-  @apply --fixed-on-the-end;
+  background-color: var(--primary-background-color);
+  border-bottom-left-radius: var(--content-border-radius);
+  border-bottom-right-radius: var(--content-border-radius);
+  margin-bottom: var(--border-margin);
+
   flex-flow: column nowrap;
   height: var(--footer-height);
 }

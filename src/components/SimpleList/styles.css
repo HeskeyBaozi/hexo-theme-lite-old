@@ -10,7 +10,8 @@
 }
 
 .pagination {
-  margin-top: var(--large-header-height);
+  margin-top: calc(var(--large-header-height) / 3);
+  z-index: 3;
   @apply --util-content-center;
 }
 

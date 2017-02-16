@@ -39,7 +39,7 @@ function SimpleList({
             <QueueAnimate type={['top', 'bottom']} key={currentPage} className={styles.queueAnimate}>
                 {getDisplayList(dataSource, {getYear, getId, renderer})}
                 <div key="pagination" className={styles.pagination}>
-                    <Pagination {...pagination}/>
+                    <Pagination {...pagination} size="small"/>
                 </div>
             </QueueAnimate>
         </QueueAnimate>

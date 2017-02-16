@@ -3,6 +3,7 @@ import styles from "./styles.css";
 import {Layout, BackTop} from "antd";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
+import Footer from './Footer/Footer';
 
 function MainLayout({
     children,
@@ -24,6 +25,7 @@ function MainLayout({
             >
                 {children}
             </Content>
+            <Footer author={author}/>
             <BackTop className={styles.backTop}/>
         </Layout>
     );
