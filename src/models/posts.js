@@ -66,7 +66,6 @@ export default {
     },
     effects: {
         initializePostsList: function*({payload, onComplete}, {put, call, select}) {
-            NProgress.start();
             // check list
             const isEmptyList = yield select(({posts}) => !posts.list.length);
             if (isEmptyList) {
@@ -87,6 +86,7 @@ export default {
             });
         },
         initializePostsMeta: function*({payload, onComplete}, {put, select, call, take}) {
+            NProgress.start();
             const {initializeList} = payload;
             const entities = yield select(({posts}) => posts.entities);
 

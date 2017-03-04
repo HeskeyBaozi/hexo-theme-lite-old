@@ -3,7 +3,7 @@
    * General
    */
   @custom-media --small (max-width: 768px);
-  --background-image-url: resolve('genji.png');
+  --background-image-url: resolve('background.jpg');
   --filter-blur: {
     position: relative;
     z-index: 1;
@@ -70,7 +70,7 @@
   --content-width: {
     margin-left: auto;
     margin-right: auto;
-    width: 740px;
+    width: 840px;
     @media (--small) {
       width: 95%;
     };
@@ -207,6 +207,7 @@
   --article-content: {
     & p {
       margin-bottom: var(--article-paragraph-space-height);
+      line-height: 1.6;
       & img {
         display: block;
         margin: 0 auto;
