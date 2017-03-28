@@ -88,9 +88,9 @@
   };
 
   --user-information-card-height: {
-    height: 500px;
+    height: 200px;
     @media (--small) {
-      height: 400px;
+      height: 100px;
     }
   };
 
@@ -112,7 +112,7 @@
     @apply --user-information-avatar-size;
   };
 
-  --content-border-radius: 5px;
+  --content-border-radius: 0px;
 
   /**
    * Footer
